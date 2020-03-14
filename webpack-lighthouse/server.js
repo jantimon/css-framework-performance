@@ -1,11 +1,13 @@
 const webpack = require('webpack');
 const middleware = require('webpack-dev-middleware');
 const express = require('express');
+var compression = require('compression');
 
 module.exports = async function launchWebpackServer(port = 3000, webpackConfig = {}, webpackDevMiddleWareOptions = {}) {
   const app = express();
   const compiler = webpack(webpackConfig);
   const webpackDevMiddleWare = middleware(compiler, webpackDevMiddleWareOptions);
+  app.use(compression());
   app.use(webpackDevMiddleWare);
   // Wait until server is up
   const firstWebpackBuild = new Promise((resolve) => webpackDevMiddleWare.waitUntilValid(resolve));

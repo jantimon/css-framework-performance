@@ -6,10 +6,11 @@
   },
   "bin": "bin/index.js",
   "dependencies": {
+    "@lhci/cli": "0.3.9",
+    "compression": "1.7.4",
     "execa": "4.0.0",
     "express": "4.17.1",
     "fast-glob": "3.2.2",
-    "@lhci/cli": "0.3.9",
     "mkdirp": "1.0.3",
     "webpack-dev-middleware": "3.7.2",
     "yargs": "15.3.0"
