@@ -90,17 +90,22 @@
     const auditToHtml = (audit) => {
       return `<div>${audit.title}: ${audit.displayValue}</div>`;
     }
+    const networkRequestsToHtml = (audit) => {
+      const items = audit.details.items;
+      const transferSizeSum = items.reduce((sum, item) => sum + item.transferSize, 0);
+      return `<div>${items.length} requests - transfer size: ${Math.ceil(transferSizeSum / 1000)}kb</div>`;
+    }
     const reportLinks = Array.from(document.querySelectorAll("a[href*=report\\.html]"));
     const reports = reportLinks.map((a) => ({ tableRow: a.closest('tr'), reportUrl: a.href.replace(/\.html$/, '.json') }));
     reports.forEach(async ({ tableRow, reportUrl }) => {
       const reportRequest = await fetch(reportUrl);
       const reportJson = await reportRequest.json();
       const statsRow = document.createElement('tr');
-      console.log(reportJson.audits)
       statsRow.innerHTML = `<td></td><td colspan="4">
       ${auditToHtml(reportJson.audits['first-contentful-paint'])}
       ${auditToHtml(reportJson.audits['first-meaningful-paint'])}
       ${auditToHtml(reportJson.audits['max-potential-fid'])}
+      ${networkRequestsToHtml(reportJson.audits['network-requests'])}
     </td>`
       tableRow.parentElement.insertBefore(statsRow, tableRow.nextElementSibling);
     });
