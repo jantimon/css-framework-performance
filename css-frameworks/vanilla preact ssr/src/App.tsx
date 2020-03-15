@@ -153,7 +153,7 @@ export const App = () => (
       <Element number={104} symbol="Rf" name="rutherfordium" weight="265.12" />
       <Element number={105} symbol="Db" name="dubnium" weight="268.13" />
       <Element number={106} symbol="Sg" name="seaborgium" weight="271.13" />
-      <Element number={107} symbol="Bh" name="bohrium" weight="270]</" />
+      <Element number={107} symbol="Bh" name="bohrium" weight="270" />
       <Element number={108} symbol="Hs" name="hassium" weight="277.15" />
       <Element number={109} symbol="Mt" name="meitnerium" weight="276.15" />
       <Element number={110} symbol="Ds" name="darmstadtium" weight="281.16" />
@@ -162,9 +162,9 @@ export const App = () => (
       <Element number={113} symbol="Uut" name="unundivium" weight="284.18" />
       <Element number={114} symbol="Fl" name="flerovium" weight="289.19" />
       <Element number={115} symbol="Uup" name="ununpentium" weight="288.19" />
-      <Element number={116} symbol="Lv" name="livermorium" weight="293]</" />
-      <Element number={117} symbol="Uus" name="ununseptium" weight="294]</" />
-      <Element number={118} symbol="Uuo" name="ununoctium" weight="294]</" />
+      <Element number={116} symbol="Lv" name="livermorium" weight="293" />
+      <Element number={117} symbol="Uus" name="ununseptium" weight="294" />
+      <Element number={118} symbol="Uuo" name="ununoctium" weight="294" />
     </PeriodicRow>
     <PeriodicRow />
     <PeriodicRow>
