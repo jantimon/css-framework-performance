@@ -1,5 +1,5 @@
 {
-  "name": "vanilla-react",
+  "name": "vanilla-react-ssr",
   "version": "1.0.0",
   "private": true,
   "main": "webpack.config.js",
