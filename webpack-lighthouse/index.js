@@ -26,6 +26,8 @@ module.exports = async function generateReport(
     "json",
     "--output-path",
     reportHTMLFile,
+    "--only-categories=performance,pwa",
+    "--throttling.cpuSlowdownMultiplier=4",
     '--chrome-flags="--headless"',
   ]);
   // Compile static with webpack
