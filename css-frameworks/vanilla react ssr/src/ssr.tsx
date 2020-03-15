@@ -1,7 +1,9 @@
-import ReactDOMServer from 'react-dom/server';
+const ReactDOMServer = __non_webpack_require__('react-dom/server');
+import React from 'react';
 import { App } from './App';
 
-module.exports = () => `<!doctype html>
+export default function () {
+  return `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -10,4 +12,5 @@ module.exports = () => `<!doctype html>
 <body>
   <div id="root">${ReactDOMServer.renderToString(<App />)}</div>
 </body>
-</html>`;
+</html>`
+};
