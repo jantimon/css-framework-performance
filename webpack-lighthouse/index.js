@@ -2,6 +2,8 @@ const path = require("path");
 const launchWebpackServer = require("./server");
 const mkdirp = require("mkdirp");
 const execa = require("execa");
+const webpack = require('webpack');
+
 
 module.exports = async function generateReport(
   port,
@@ -10,6 +12,8 @@ module.exports = async function generateReport(
 ) {
   // Compile with webpack
   const webpackConfig = require(webpackConfigPath);
+  // Compile static with webpack
+  await compile({...webpackConfig, output: { ...(webpackConfig.output || {}), path: path.join(outputPath, 'page') }})
   await launchWebpackServer(port, webpackConfig, {
     hot: false
   });
@@ -39,4 +43,16 @@ async function startLighthouse(args) {
       console.error(err);
     }
   );
+}
+
+function compile(webpackConfig) {
+  return new Promise((resolve, reject) => webpack(webpackConfig, (err, stats) => {
+    const error = err || (stats.compilation.errors.length && stats.compilation.errors) || (stats.compilation.warnings.length && stats.compilation.warnings);
+    console.log(error);
+    if (error) {
+      reject(error);
+    } else {
+      resolve(stats);
+    }
+  }));
 }
