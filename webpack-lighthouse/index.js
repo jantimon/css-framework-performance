@@ -2,7 +2,6 @@ const path = require("path");
 const launchWebpackServer = require("./server");
 const mkdirp = require("mkdirp");
 const execa = require("execa");
-const webpack = require('webpack');
 
 module.exports = async function generateReport(
   port,
