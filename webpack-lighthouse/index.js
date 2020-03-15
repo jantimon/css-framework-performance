@@ -4,7 +4,6 @@ const mkdirp = require("mkdirp");
 const execa = require("execa");
 const webpack = require('webpack');
 
-
 module.exports = async function generateReport(
   port,
   webpackConfigPath,
@@ -12,8 +11,6 @@ module.exports = async function generateReport(
 ) {
   // Compile with webpack
   const webpackConfig = require(webpackConfigPath);
-  // Compile static with webpack
-  await compile({...webpackConfig, output: { ...(webpackConfig.output || {}), path: path.join(outputPath, 'page') }})
   await launchWebpackServer(port, webpackConfig, {
     hot: false
   });
@@ -29,6 +26,8 @@ module.exports = async function generateReport(
     reportHTMLFile,
     '--chrome-flags="--headless"',
   ]);
+  // Compile static with webpack
+  await staticCompile(webpackConfigPath, path.join(outputPath, 'page'));
 };
 
 async function startLighthouse(args) {
@@ -45,14 +44,15 @@ async function startLighthouse(args) {
   );
 }
 
-function compile(webpackConfig) {
-  return new Promise((resolve, reject) => webpack(webpackConfig, (err, stats) => {
-    const error = err || (stats.compilation.errors.length && stats.compilation.errors) || (stats.compilation.warnings.length && stats.compilation.warnings);
-    console.log(error);
-    if (error) {
-      reject(error);
-    } else {
-      resolve(stats);
+async function staticCompile(webpackConfigPath, outputPath) {
+  console.log("🚩", "static webpack");
+  const childProcess = execa(require.resolve("webpack-cli"), ['--config', webpackConfigPath, '--output-path', outputPath]);
+  childProcess.stdout.pipe(process.stdout);
+  childProcess.stderr.pipe(process.stderr);
+  return await childProcess.then(
+    () => {},
+    err => {
+      console.error(err);
     }
-  }));
+  );
 }

@@ -12,6 +12,7 @@
     "express": "4.17.1",
     "fast-glob": "3.2.2",
     "mkdirp": "1.0.3",
+    "webpack-cli": "3.3.11",
     "webpack-dev-middleware": "3.7.2",
     "yargs": "15.3.0"
   },
