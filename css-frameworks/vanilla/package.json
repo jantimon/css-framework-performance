@@ -1,0 +1,11 @@
+{
+  "name": "vanilla",
+  "version": "1.0.0",
+  "private": true,
+  "main": "webpack.config.js",
+  "dependencies": {
+    "html-webpack-plugin": "4.0.0-beta.11",
+    "scss-config-webpack-plugin": "1.4.0",
+    "webpack": "4.42.0"
+  }
+}
