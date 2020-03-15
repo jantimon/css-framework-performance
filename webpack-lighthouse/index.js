@@ -15,12 +15,15 @@ module.exports = async function generateReport(
   });
   const reportHTMLFile = /[^\.]+\./.test(path.basename(outputPath))
     ? outputPath
-    : path.join(outputPath, "index.html");
+    : path.join(outputPath, "index");
   // Generate report  
   mkdirp(path.dirname(reportHTMLFile));
   await startLighthouse([
     `http://127.0.0.1:${port}/index.html`,
-    //"--verbose",
+    "--output",
+    "html",
+    "--output",
+    "json",
     "--output-path",
     reportHTMLFile,
     '--chrome-flags="--headless"',
