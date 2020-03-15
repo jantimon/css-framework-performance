@@ -34,7 +34,7 @@
       <tbody>
         <tr>
           <td>Vanilla</td>
-          <td><a href="reports/vanilla/">Report</a></td>
+          <td><a href="reports/vanilla/index.report.html">Report</a></td>
           <td><a href="reports/vanilla/page/">Demo</a></td>
           <td><a
               href="https://github.com/jantimon/css-framework-performance/tree/master/css-frameworks/vanilla">Code</a>
@@ -43,7 +43,7 @@
         </tr>
         <tr>
           <td>Vanilla Style Loader</td>
-          <td><a href="reports/vanilla%20style-loader/">Report</a></td>
+          <td><a href="reports/vanilla%20style-loader/index.report.html">Report</a></td>
           <td><a href="reports/vanilla%20style-loader/page/">Demo</a></td>
           <td><a
               href="https://github.com/jantimon/css-framework-performance/tree/master/css-frameworks/vanilla%20style-loader">Code</a>
@@ -52,16 +52,46 @@
         </tr>
         <tr>
           <td>Vanilla with React</td>
-          <td><a href="reports/vanilla%20react/">Report</a></td>
+          <td><a href="reports/vanilla%20react/index.report.html">Report</a></td>
           <td><a href="reports/vanilla%20react/page/">Demo</a></td>
           <td><a
               href="https://github.com/jantimon/css-framework-performance/tree/master/css-frameworks/vanilla%20react">Code</a>
           </td>
           <td>Plain css classes used by react</td>
         </tr>
+        <tr>
+          <td>Vanilla with React SSR</td>
+          <td><a href="reports/vanilla%20react%20ssr/index.report.html">Report</a></td>
+          <td><a href="reports/vanilla%20react%20ssr/page/">Demo</a></td>
+          <td><a
+              href="https://github.com/jantimon/css-framework-performance/tree/master/css-frameworks/vanilla%20react%20ssr">Code</a>
+          </td>
+          <td>Plain css classes used by react with server side rendering</td>
+        </tr>
       </tbody>
     </table>
   </div>
+
+  <script>
+    // Very basic first implementation of audit result injection
+    const auditToHtml = (audit) => {
+      return `<div>${audit.title}: ${audit.displayValue}</div>`;
+    }
+    const reportLinks = Array.from(document.querySelectorAll("a[href*=report\\.html]"));
+    const reports = reportLinks.map((a) => ({ tableRow: a.closest('tr'), reportUrl: a.href.replace(/\.html$/, '.json') }));
+    reports.forEach(async ({ tableRow, reportUrl }) => {
+      const reportRequest = await fetch(reportUrl);
+      const reportJson = await reportRequest.json();
+      const statsRow = document.createElement('tr');
+      console.log(reportJson.audits)
+      statsRow.innerHTML = `<td></td><td colspan="4">
+      ${auditToHtml(reportJson.audits['first-contentful-paint'])}
+      ${auditToHtml(reportJson.audits['first-meaningful-paint'])}
+      ${auditToHtml(reportJson.audits['max-potential-fid'])}
+    </td>`
+      tableRow.parentElement.insertBefore(statsRow, tableRow.nextElementSibling);
+    });
+  </script>
 
 </body>
 
