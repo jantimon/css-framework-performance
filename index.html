@@ -119,11 +119,13 @@
       const reportRequest = await fetch(reportUrl);
       const reportJson = await reportRequest.json();
       const statsRow = document.createElement('tr');
-      statsRow.innerHTML = `<td></td><td colspan="4">
+      statsRow.innerHTML = `<td></td><td colspan="3">
       ${auditToHtml(reportJson.audits['first-contentful-paint'])}
       ${auditToHtml(reportJson.audits['first-meaningful-paint'])}
-      ${auditToHtml(reportJson.audits['max-potential-fid'])}
       ${auditToHtml(reportJson.audits['first-cpu-idle'])}
+      </td><td>
+      ${auditToHtml(reportJson.audits["interactive"])}
+      ${auditToHtml(reportJson.audits['max-potential-fid'])}
       ${networkRequestsToHtml(reportJson.audits['network-requests'])}
     </td>`
       tableRow.parentElement.insertBefore(statsRow, tableRow.nextElementSibling);
