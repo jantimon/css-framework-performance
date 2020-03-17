@@ -123,6 +123,7 @@
       ${auditToHtml(reportJson.audits['first-contentful-paint'])}
       ${auditToHtml(reportJson.audits['first-meaningful-paint'])}
       ${auditToHtml(reportJson.audits['max-potential-fid'])}
+      ${auditToHtml(reportJson.audits['first-cpu-idle'])}
       ${networkRequestsToHtml(reportJson.audits['network-requests'])}
     </td>`
       tableRow.parentElement.insertBefore(statsRow, tableRow.nextElementSibling);
