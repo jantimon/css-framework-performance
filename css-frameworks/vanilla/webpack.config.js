@@ -5,7 +5,9 @@ module.exports = {
   context: __dirname,
   mode: "production",
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({ 
+      scriptLoading: 'defer',
+    }),
     new ScssConfigWebpackPlugin(),
   ]
 }

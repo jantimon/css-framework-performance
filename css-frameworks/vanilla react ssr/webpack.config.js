@@ -8,7 +8,8 @@ module.exports = {
   plugins: [
     // Generate a base html file and injects all generated css and js files
     new HtmlWebpackPlugin({
-      template: './src/ssr.tsx'
+      template: './src/ssr.tsx',
+      scriptLoading: 'defer'
     }),
     // SCSS Configuration for .css .module.css and .scss .module.scss files
     // see https://github.com/namics/webpack-config-plugins/tree/master/packages/scss-config-webpack-plugin/config

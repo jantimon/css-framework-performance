@@ -7,7 +7,8 @@ module.exports = {
   plugins: [
     // Generate a base html file and injects all generated css and js files
     new HtmlWebpackPlugin({
-      template: './src/ssr.tsx'
+      template: './src/ssr.tsx',
+      scriptLoading: 'defer'
     }),
     // Multi threading typescript loader configuration with caching for .ts and .tsx files
     // see https://github.com/namics/webpack-config-plugins/tree/master/packages/ts-config-webpack-plugin/config

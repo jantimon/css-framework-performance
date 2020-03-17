@@ -7,7 +7,9 @@ module.exports = {
   mode: 'production',
   plugins: [
     // Generate a base html file and injects all generated css and js files
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({ 
+      scriptLoading: 'defer'
+    }),
     // SCSS Configuration for .css .module.css and .scss .module.scss files
     // see https://github.com/namics/webpack-config-plugins/tree/master/packages/scss-config-webpack-plugin/config
     new ScssConfigWebpackPlugin(),
