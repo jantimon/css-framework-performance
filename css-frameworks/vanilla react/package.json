@@ -10,7 +10,7 @@
     "react-dom": "16.13.0"
   },
   "devDependencies": {
-    "html-webpack-plugin": "4.0.0-beta.13",
+    "html-webpack-plugin": "4.0.0-beta.14",
     "scss-config-webpack-plugin": "1.4.0",
     "ts-config-webpack-plugin": "1.4.0",
     "typescript": "3.8.3",
