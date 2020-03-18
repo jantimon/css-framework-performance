@@ -21,7 +21,8 @@
     <section class="header">
       <h2 class="title">A performance comparison of css approaches.</h2>
       <a href="https://github.com/jantimon/css-framework-performance">
-        <img src="https://github.com/jantimon/css-framework-performance/workflows/github%20pages/badge.svg" alt="Deploy Task" />
+        <img src="https://github.com/jantimon/css-framework-performance/workflows/github%20pages/badge.svg"
+          alt="Deploy Task" />
       </a>
     </section>
     <table class="u-full-width">
@@ -37,7 +38,9 @@
       <tbody>
         <tr>
           <td>Vanilla</td>
-          <td><a href="reports/vanilla/index.report.html">Report</a></td>
+          <td><a href="reports/vanilla/index.report.html">Report</a>
+            <a href="reports/vanilla/index-01.report.html">(1)</a>
+            <a href="reports/vanilla/index-02.report.html">(2)</a></td>
           <td><a href="reports/vanilla/page/">Demo</a></td>
           <td><a
               href="https://github.com/jantimon/css-framework-performance/tree/master/css-frameworks/vanilla">Code</a>
@@ -46,7 +49,9 @@
         </tr>
         <tr>
           <td>Vanilla Style Loader</td>
-          <td><a href="reports/vanilla%20style-loader/index.report.html">Report</a></td>
+          <td><a href="reports/vanilla%20style-loader/index.report.html">Report</a>
+            <a href="reports/vanilla%20style-loader/index-01.report.html">(1)</a>
+            <a href="reports/vanilla%20style-loader/index-02.report.html">(2)</a></td>
           <td><a href="reports/vanilla%20style-loader/page/">Demo</a></td>
           <td><a
               href="https://github.com/jantimon/css-framework-performance/tree/master/css-frameworks/vanilla%20style-loader">Code</a>
@@ -55,7 +60,9 @@
         </tr>
         <tr>
           <td>Vanilla with React</td>
-          <td><a href="reports/vanilla%20react/index.report.html">Report</a></td>
+          <td><a href="reports/vanilla%20react/index.report.html">Report</a>
+            <a href="reports/vanilla%20react/index-01.report.html">(1)</a>
+            <a href="reports/vanilla%20react/index-02.report.html">(2)</a></td>
           <td><a href="reports/vanilla%20react/page/">Demo</a></td>
           <td><a
               href="https://github.com/jantimon/css-framework-performance/tree/master/css-frameworks/vanilla%20react">Code</a>
@@ -64,7 +71,9 @@
         </tr>
         <tr>
           <td>Vanilla with React SSR</td>
-          <td><a href="reports/vanilla%20react%20ssr/index.report.html">Report</a></td>
+          <td><a href="reports/vanilla%20react%20ssr/index.report.html">Report</a>
+            <a href="reports/vanilla%20react%20ssr/index-01.report.html">(1)</a>
+            <a href="reports/vanilla%20react%20ssr/index-02.report.html">(2)</a></td>
           <td><a href="reports/vanilla%20react%20ssr/page/">Demo</a></td>
           <td><a
               href="https://github.com/jantimon/css-framework-performance/tree/master/css-frameworks/vanilla%20react%20ssr">Code</a>
@@ -72,8 +81,21 @@
           <td>Plain css classes used by react with server side rendering</td>
         </tr>
         <tr>
+          <td>Vanilla with Preact</td>
+          <td><a href="reports/vanilla%20preact/index.report.html">Report</a>
+            <a href="reports/vanilla%20preact/index-01.report.html">(1)</a>
+            <a href="reports/vanilla%20preact/index-02.report.html">(2)</a></td>
+          <td><a href="reports/vanilla%20preact/page/">Demo</a></td>
+          <td><a
+              href="https://github.com/jantimon/css-framework-performance/tree/master/css-frameworks/vanilla%20preact">Code</a>
+          </td>
+          <td>Plain css classes used by preact</td>
+        </tr>
+        <tr>
           <td>Vanilla with Preact SSR</td>
-          <td><a href="reports/vanilla%20preact%20ssr/index.report.html">Report</a></td>
+          <td><a href="reports/vanilla%20preact%20ssr/index.report.html">Report</a>
+            <a href="reports/vanilla%20preact%20ssr/index-01.report.html">(1)</a>
+            <a href="reports/vanilla%20preact%20ssr/index-02.report.html">(2)</a></td>
           <td><a href="reports/vanilla%20preact%20ssr/page/">Demo</a></td>
           <td><a
               href="https://github.com/jantimon/css-framework-performance/tree/master/css-frameworks/vanilla%20preact%20ssr">Code</a>
@@ -82,7 +104,9 @@
         </tr>
         <tr>
           <td>Styled Components</td>
-          <td><a href="reports/styled-components/index.report.html">Report</a></td>
+          <td><a href="reports/styled-components/index.report.html">Report</a>
+            <a href="reports/styled-components/index-01.report.html">(1)</a>
+            <a href="reports/styled-components/index-02.report.html">(2)</a></td>
           <td><a href="reports/styled-components/page/">Demo</a></td>
           <td><a
               href="https://github.com/jantimon/css-framework-performance/tree/master/css-frameworks/styled-components">Code</a>
@@ -91,7 +115,9 @@
         </tr>
         <tr>
           <td>Styled Components SSR</td>
-          <td><a href="reports/styled-components%20ssr/index.report.html">Report</a></td>
+          <td><a href="reports/styled-components%20ssr/index.report.html">Report</a>
+            <a href="reports/styled-components%20ssr/index-01.report.html">(1)</a>
+            <a href="reports/styled-components%20ssr/index-02.report.html">(2)</a></td>
           <td><a href="reports/styled-components%20ssr/page/">Demo</a></td>
           <td><a
               href="https://github.com/jantimon/css-framework-performance/tree/master/css-frameworks/styled-components%20ssr">Code</a>
@@ -105,28 +131,38 @@
 
   <script>
     // Very basic first implementation of audit result injection
-    const auditToHtml = (audit) => {
-      return `<div>${audit.title}: ${audit.displayValue}</div>`;
+    const auditToHtml = (reports, auditName) => {
+      const items = reports.map((report) => report.audits[auditName]);
+      items.sort((a, b) => a.numericValue > b.numericValue ? 1 : a.numericValue === b.numericValue ? 0 : -1)
+      const meanValue = items[1];
+      return `<div>${reports[0].audits[auditName].title}: ${meanValue.displayValue}</div>`;
+    }
+    const getReport = async (baseReportUrl, postfix = '') => {
+      const reportRequest = await fetch(baseReportUrl + postfix + '.report.json');
+      return await reportRequest.json();
     }
     const networkRequestsToHtml = (audit) => {
       const items = audit.details.items;
       const transferSizeSum = items.reduce((sum, item) => sum + item.transferSize, 0);
       return `<div>${items.length} requests - transfer size: ${Math.ceil(transferSizeSum / 1000)}kb</div>`;
     }
-    const reportLinks = Array.from(document.querySelectorAll("a[href*=report\\.html]"));
-    const reports = reportLinks.map((a) => ({ tableRow: a.closest('tr'), reportUrl: a.href.replace(/\.html$/, '.json') }));
+    const reportLinks = Array.from(document.querySelectorAll("a[href*=index\\.report\\.html]"));
+    const reports = reportLinks.map((a) => ({ tableRow: a.closest('tr'), reportUrl: a.href.replace(/\.report\.html$/, '') }));
     reports.forEach(async ({ tableRow, reportUrl }) => {
-      const reportRequest = await fetch(reportUrl);
-      const reportJson = await reportRequest.json();
+      const reports = await Promise.all([
+        getReport(reportUrl),
+        getReport(reportUrl, '-01'),
+        getReport(reportUrl, '-02')
+      ]);
       const statsRow = document.createElement('tr');
       statsRow.innerHTML = `<td></td><td colspan="3">
-      ${auditToHtml(reportJson.audits['first-contentful-paint'])}
-      ${auditToHtml(reportJson.audits['first-meaningful-paint'])}
-      ${auditToHtml(reportJson.audits['first-cpu-idle'])}
+      ${auditToHtml(reports, 'first-contentful-paint')}
+      ${auditToHtml(reports, 'first-meaningful-paint')}
+      ${auditToHtml(reports, 'first-cpu-idle')}
       </td><td>
-      <strong>${auditToHtml(reportJson.audits["interactive"])}</strong>
-      ${auditToHtml(reportJson.audits['max-potential-fid'])}
-      ${networkRequestsToHtml(reportJson.audits['network-requests'])}
+      <strong>${auditToHtml(reports, "interactive")}</strong>
+      ${auditToHtml(reports, 'max-potential-fid')}
+      ${networkRequestsToHtml(reports[0].audits['network-requests'])}
     </td>`
       tableRow.parentElement.insertBefore(statsRow, tableRow.nextElementSibling);
     });
