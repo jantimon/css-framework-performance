@@ -124,7 +124,7 @@
       ${auditToHtml(reportJson.audits['first-meaningful-paint'])}
       ${auditToHtml(reportJson.audits['first-cpu-idle'])}
       </td><td>
-      ${auditToHtml(reportJson.audits["interactive"])}
+      <strong>${auditToHtml(reportJson.audits["interactive"])}</strong>
       ${auditToHtml(reportJson.audits['max-potential-fid'])}
       ${networkRequestsToHtml(reportJson.audits['network-requests'])}
     </td>`
