@@ -39,7 +39,7 @@ Vue.component("periodic-row", {
   `
 });
 
-var app = new Vue({
+new Vue({
   el: "#root",
   template: `
     <periodic-table>
