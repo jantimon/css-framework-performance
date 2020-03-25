@@ -8,7 +8,7 @@ Vue.component("app-element", {
     weight: String
   },
   template: `
-      <div class="cell"">
+      <div class="cell">
         <div class="element" v-if="name">
           <div class="at_num">{{ number }}</div>
           <div class="symbol">{{ symbol }}</div>
