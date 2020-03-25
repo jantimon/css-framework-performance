@@ -3,11 +3,7 @@ const renderer = __non_webpack_require__(
 ).createRenderer();
 import { app } from "./App";
 
-let html;
-
-renderer.renderToString(app).then(h => (html = h));
-
-export default function() {
+export default async function() {
   return `
     <!doctype html>
     <html lang="en">
@@ -17,7 +13,7 @@ export default function() {
       </head>
       <body>
         <div id="root">
-          ${html}
+          ${await renderer.renderToString(app)}
         </div>
       </body>
     </html>
