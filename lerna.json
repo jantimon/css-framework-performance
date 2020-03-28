@@ -1,6 +1,7 @@
 {
   "packages": [
     "css-frameworks/*"
-  ],
+	],
+	"hoist": "true",
   "version": "0.0.0"
 }
