@@ -4,7 +4,6 @@ const express = require('express');
 const compression = require('compression');
 
 module.exports = async function launchWebpackServer(port = 3000, webpackConfig = {}, webpackDevMiddleWareOptions = {}) {
-	console.log(port);
   const app = express();
   const compiler = webpack(webpackConfig);
   const webpackDevMiddleWare = middleware(compiler, webpackDevMiddleWareOptions);
