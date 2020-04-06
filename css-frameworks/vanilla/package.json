@@ -4,7 +4,7 @@
   "private": true,
   "main": "webpack.config.js",
   "dependencies": {
-    "html-webpack-plugin": "4.0.0-beta.14",
+    "html-webpack-plugin": "4.0.4",
     "scss-config-webpack-plugin": "2.0.0",
     "webpack": "4.42.0"
   }

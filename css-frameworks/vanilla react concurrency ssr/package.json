@@ -1,5 +1,5 @@
 {
-  "name": "vanilla-react-ssr",
+  "name": "vanilla-react-concurrency-ssr",
   "version": "1.0.0",
   "private": true,
   "main": "webpack.config.js",

@@ -1,11 +1,13 @@
 {
-  "name": "vanilla-react-ssr",
+  "name": "vanilla-react-concurrency",
   "version": "1.0.0",
   "private": true,
   "main": "webpack.config.js",
   "dependencies": {
-    "react": "16.13.0",
-    "react-dom": "16.13.0"
+    "css-loader": "3.4.2",
+    "style-loader": "1.1.3",
+    "react": "experimental",
+    "react-dom": "experimental"
   },
   "devDependencies": {
     "html-webpack-plugin": "4.0.4",
