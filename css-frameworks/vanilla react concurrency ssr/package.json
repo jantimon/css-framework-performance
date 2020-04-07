@@ -4,8 +4,8 @@
   "private": true,
   "main": "webpack.config.js",
   "dependencies": {
-    "react": "16.13.0",
-    "react-dom": "16.13.0"
+    "react": "experimental",
+    "react-dom": "experimental"
   },
   "devDependencies": {
     "html-webpack-plugin": "4.0.4",
