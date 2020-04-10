@@ -58,22 +58,22 @@ const Report = ({ report }: ReportProps) => (
         Code
       </a>
     </td>
-    <td>
+    <td style={{textAlign: 'center'}}>
       <Size label="Full transfer size of all requests (gzip)">{report.lighthouseReportSummary.TransferSize}</Size>
     </td>
-    <td>
+    <td style={{textAlign: 'center'}}>
       <Time label="First Meaningful Paint">{report.lighthouseReportSummary.FirstMeaningfulPaint}</Time>
     </td>
-    <td>
+    <td style={{textAlign: 'center'}}>
       <Time label="First Contentful Paint">{report.lighthouseReportSummary.FirstContentfulPaint}</Time>
     </td>
-    <td>
+    <td style={{textAlign: 'center'}}>
       <Time label="Time To Interactive">{report.lighthouseReportSummary.TimeToInteractive}</Time>
     </td>
-    <td>
+    <td style={{textAlign: 'center'}}>
       <Time label="First Cpu Idle">{report.lighthouseReportSummary.FirstCPUIdle}</Time>
     </td>
-    <td>
+    <td style={{textAlign: 'right'}}>
     <div style={{whiteSpace: 'nowrap'}}>
       <a href={`reports/${report.projectFolderName}/index.report.html`} title="Report 1">
         1
@@ -88,16 +88,16 @@ const Report = ({ report }: ReportProps) => (
     </td>
   </tr>
   <tr>
-    <td colSpan={3}><small>{report.description}</small></td>
-    <td colSpan={5}></td>
+    <td colSpan={4}><small style={{maxWidth: 'calc(100vw - 40px)'}}>{report.description}</small></td>
+    <td colSpan={4}></td>
   </tr>
   </Fragment>
 );
 
 const Time = ({children, label}: {label: string, children: number}) => (
-  <span title={`${label}: ${children} ms`} style={{whiteSpace: 'nowrap'}}>⏱️ {Math.round(children/ 100) / 10} s</span>
+  <span title={`${label}: ${children} ms`} style={{whiteSpace: 'nowrap',fontVariantNumeric: 'tabular-nums'}}>⏱️ {(Math.round(children/ 100) / 10).toFixed(1)} s</span>
 )
 
 const Size = ({children, label}: {label: string, children: number}) => (
-  <span title={`${label}: ${children} byte`} style={{whiteSpace: 'nowrap'}}>📏 {Math.round(children/ 100) / 10} kb</span>
+  <span title={`${label}: ${children} byte`} style={{whiteSpace: 'nowrap',fontVariantNumeric: 'tabular-nums'}}>📏 {(Math.round(children/ 100) / 10).toFixed(1)} kb</span>
 )

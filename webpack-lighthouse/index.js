@@ -24,6 +24,7 @@ module.exports = async function generateReport(
     "html",
     "--output",
     "json",
+    "--throttling-method=devtools",
     "--throttling.cpuSlowdownMultiplier=4",
     '--chrome-flags="--headless"',
 
@@ -36,6 +37,7 @@ module.exports = async function generateReport(
     "html",
     "--output",
     "json",
+    "--throttling-method=devtools",
     "--throttling.cpuSlowdownMultiplier=4",
     '--chrome-flags="--headless"',
 
@@ -48,6 +50,7 @@ module.exports = async function generateReport(
     "html",
     "--output",
     "json",
+    "--throttling-method=devtools",
     "--throttling.cpuSlowdownMultiplier=4",
     '--chrome-flags="--headless"',
 
@@ -60,8 +63,10 @@ module.exports = async function generateReport(
     "html",
     "--output",
     "json",
+    "--throttling-method=devtools",
     "--throttling.cpuSlowdownMultiplier=4",
     '--chrome-flags="--headless"',
+    
     "--output-path",
     reportHTMLFile + '-03',
   ]);
@@ -71,6 +76,7 @@ module.exports = async function generateReport(
     "html",
     "--output",
     "json",
+    "--throttling-method=devtools",
     "--throttling.cpuSlowdownMultiplier=4",
     '--chrome-flags="--headless"',
 
