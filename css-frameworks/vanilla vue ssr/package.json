@@ -1,5 +1,6 @@
 {
   "name": "vanilla-vue-ssr",
+  "description": "Plain css classes used with Vue and SSR",
   "version": "1.0.0",
   "private": true,
   "main": "webpack.config.js",

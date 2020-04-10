@@ -1,5 +1,6 @@
 {
   "name": "vanilla-preact",
+  "description": "Plain css classes used by preact",
   "version": "1.0.0",
   "private": true,
   "main": "webpack.config.js",

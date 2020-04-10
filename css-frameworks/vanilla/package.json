@@ -1,5 +1,6 @@
 {
   "name": "vanilla",
+  "description": "Plain old css using the mini-css-extract-plugin",
   "version": "1.0.0",
   "private": true,
   "main": "webpack.config.js",

@@ -1,5 +1,6 @@
 {
   "name": "vanilla-style-loader",
+  "description": "Plain css embededed using the webpack style-loader",
   "version": "1.0.0",
   "private": true,
   "main": "webpack.config.js",

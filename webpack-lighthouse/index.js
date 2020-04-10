@@ -51,6 +51,28 @@ module.exports = async function generateReport(
     "--throttling.cpuSlowdownMultiplier=4",
     '--chrome-flags="--headless"',
   ]);
+  await startLighthouse([
+    `http://127.0.0.1:${port}/index.html`,
+    "--output",
+    "html",
+    "--output",
+    "json",
+    "--output-path",
+    reportHTMLFile + '-03',
+    "--throttling.cpuSlowdownMultiplier=4",
+    '--chrome-flags="--headless"',
+  ]);
+  await startLighthouse([
+    `http://127.0.0.1:${port}/index.html`,
+    "--output",
+    "html",
+    "--output",
+    "json",
+    "--output-path",
+    reportHTMLFile + '-04',
+    "--throttling.cpuSlowdownMultiplier=4",
+    '--chrome-flags="--headless"',
+  ]);
   // Compile static with webpack
   await staticCompile(webpackConfigPath, path.join(outputPath, 'page'));
 };

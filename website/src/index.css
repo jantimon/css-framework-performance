@@ -1,0 +1,23 @@
+th {
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+td:first-child {
+  position: sticky;
+  left: 20px;
+  background: white;
+}
+
+td:first-child:before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  width: 20px;
+  top: 0;
+  bottom: 0;
+  background: white;
+}

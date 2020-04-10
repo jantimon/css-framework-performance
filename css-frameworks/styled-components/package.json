@@ -1,5 +1,6 @@
 {
   "name": "styled-components",
+  "description": "Styled-components used with react",
   "version": "1.0.0",
   "private": true,
   "main": "webpack.config.js",

@@ -1,12 +1,11 @@
 {
-  "name": "vanilla-react-ssr",
-  "description": "Plain css classes used by react with server side rendering",
+  "name": "website",
   "version": "1.0.0",
   "private": true,
   "main": "webpack.config.js",
   "dependencies": {
-    "react": "16.13.0",
-    "react-dom": "16.13.0"
+    "preact": "10.3.4",
+    "preact-render-to-string": "5.1.4"
   },
   "devDependencies": {
     "html-webpack-plugin": "4.0.4",

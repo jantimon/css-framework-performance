@@ -1,0 +1,103 @@
+import { h, Fragment } from "preact";
+
+interface Report {
+  name: string;
+  description: string;
+  projectFolderName: string;
+  lighthouseReportSummary: {
+    FirstContentfulPaint: number;
+    FirstMeaningfulPaint: number;
+    FirstCPUIdle: number;
+    TimeToInteractive: number;
+    MaxPotentialFirstInputDelay: number;
+    Requests: number;
+    TransferSize: number;
+  };
+}
+
+interface AppProps {
+  reportData: Array<Report>;
+}
+
+export const App = ({ reportData }: AppProps) => (
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Demo</th>
+          <th>Transfer Size</th>
+          <th>First Meaningful Paint</th>
+          <th>First Contentful Paint</th>
+          <th>Time To Interactive</th>
+          <th>First Cpu Idle</th>
+          <th>Full Report</th>
+        </tr>
+      </thead>
+      <tbody>
+        {reportData.map((report) => (
+          <Report report={report} />
+        ))}
+      </tbody>
+    </table>
+);
+
+interface ReportProps {
+  report: Report;
+}
+
+const Report = ({ report }: ReportProps) => (
+  <Fragment>
+  <tr>
+    <td style={{whiteSpace: 'nowrap'}}><strong>{report.name.replace(/-/g, '‑')}</strong></td>
+    <td>
+      <a href={`reports/${report.projectFolderName}/page/`}>Demo</a>
+      <br />
+      <a
+        href={`https://github.com/jantimon/css-framework-performance/tree/master/css-frameworks/vanilla`}
+      >
+        Code
+      </a>
+    </td>
+    <td>
+      <Size label="Full transfer size of all requests (gzip)">{report.lighthouseReportSummary.TransferSize}</Size>
+    </td>
+    <td>
+      <Time label="First Meaningful Paint">{report.lighthouseReportSummary.FirstMeaningfulPaint}</Time>
+    </td>
+    <td>
+      <Time label="First Contentful Paint">{report.lighthouseReportSummary.FirstContentfulPaint}</Time>
+    </td>
+    <td>
+      <Time label="Time To Interactive">{report.lighthouseReportSummary.TimeToInteractive}</Time>
+    </td>
+    <td>
+      <Time label="First Cpu Idle">{report.lighthouseReportSummary.FirstCPUIdle}</Time>
+    </td>
+    <td>
+    <div style={{whiteSpace: 'nowrap'}}>
+      <a href={`reports/${report.projectFolderName}/index.report.html`} title="Report 1">
+        1
+      </a>{' / '}
+      <a href={`reports/${report.projectFolderName}/index-01.report.html`} title="Report 2">
+        2
+      </a>{' / '}
+      <a href={`reports/${report.projectFolderName}/index-02.report.html`} title="Report 3">
+        3
+      </a>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colSpan={3}><small>{report.description}</small></td>
+    <td colSpan={5}></td>
+  </tr>
+  </Fragment>
+);
+
+const Time = ({children, label}: {label: string, children: number}) => (
+  <span title={`${label}: ${children} ms`} style={{whiteSpace: 'nowrap'}}>⏱️ {Math.round(children/ 100) / 10} s</span>
+)
+
+const Size = ({children, label}: {label: string, children: number}) => (
+  <span title={`${label}: ${children} byte`} style={{whiteSpace: 'nowrap'}}>📏 {Math.round(children/ 100) / 10} kb</span>
+)
