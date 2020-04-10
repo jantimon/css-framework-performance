@@ -75,13 +75,13 @@ const Report = ({ report }: ReportProps) => (
     </td>
     <td style={{textAlign: 'right'}}>
     <div style={{whiteSpace: 'nowrap'}}>
-      <a href={`reports/${report.projectFolderName}/index.report.html`} title="Report 1">
+      <a href={`reports/${report.projectFolderName}/index-0.3g.report.html`} title="Report 1">
         1
       </a>{' / '}
-      <a href={`reports/${report.projectFolderName}/index-01.report.html`} title="Report 2">
+      <a href={`reports/${report.projectFolderName}/index-1.3g.report.html`} title="Report 2">
         2
       </a>{' / '}
-      <a href={`reports/${report.projectFolderName}/index-02.report.html`} title="Report 3">
+      <a href={`reports/${report.projectFolderName}/index-2.3g.report.html`} title="Report 3">
         3
       </a>
       </div>

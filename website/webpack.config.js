@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScssConfigWebpackPlugin = require('scss-config-webpack-plugin');
 const TsConfigWebpackPlugin = require('ts-config-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = {
   context: __dirname,
@@ -14,6 +15,10 @@ module.exports = {
       template: './src/ssr.tsx',
       scriptLoading: 'defer'
     }),
+    // Copyright https://commons.wikimedia.org/wiki/File:Speed_ballonicon2.svg?uselang=fr
+    new FaviconsWebpackPlugin({logo: './logo.png', favicons: {
+      appName: 'CSS-Framework Lighthouse Scores',
+    }}),
     // SCSS Configuration for .css .module.css and .scss .module.scss files
     // see https://github.com/namics/webpack-config-plugins/tree/master/packages/scss-config-webpack-plugin/config
     new ScssConfigWebpackPlugin(),

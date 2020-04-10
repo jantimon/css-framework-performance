@@ -18,71 +18,21 @@ module.exports = async function generateReport(
     : path.join(outputPath, "index");
   // Generate report  
   mkdirp(path.dirname(reportHTMLFile));
-  await startLighthouse([
-    `http://127.0.0.1:${port}/index.html`,
-    "--output",
-    "html",
-    "--output",
-    "json",
-    "--throttling-method=devtools",
-    "--throttling.cpuSlowdownMultiplier=4",
-    '--chrome-flags="--headless"',
+  for (let i = 0; i < 5; i++) {
+    await startLighthouse([
+      `http://127.0.0.1:${port}/index.html`,
+      "--output",
+      "html",
+      "--output",
+      "json",
+      "--throttling-method=devtools",
+      "--throttling.cpuSlowdownMultiplier=4",
+      '--chrome-flags="--headless"',
 
-    "--output-path",
-    reportHTMLFile,
-  ]);
-  await startLighthouse([
-    `http://127.0.0.1:${port}/index.html`,
-    "--output",
-    "html",
-    "--output",
-    "json",
-    "--throttling-method=devtools",
-    "--throttling.cpuSlowdownMultiplier=4",
-    '--chrome-flags="--headless"',
-
-    "--output-path",
-    reportHTMLFile + '-01',
-  ]);
-  await startLighthouse([
-    `http://127.0.0.1:${port}/index.html`,
-    "--output",
-    "html",
-    "--output",
-    "json",
-    "--throttling-method=devtools",
-    "--throttling.cpuSlowdownMultiplier=4",
-    '--chrome-flags="--headless"',
-
-    "--output-path",
-    reportHTMLFile + '-02',
-  ]);
-  await startLighthouse([
-    `http://127.0.0.1:${port}/index.html`,
-    "--output",
-    "html",
-    "--output",
-    "json",
-    "--throttling-method=devtools",
-    "--throttling.cpuSlowdownMultiplier=4",
-    '--chrome-flags="--headless"',
-    
-    "--output-path",
-    reportHTMLFile + '-03',
-  ]);
-  await startLighthouse([
-    `http://127.0.0.1:${port}/index.html`,
-    "--output",
-    "html",
-    "--output",
-    "json",
-    "--throttling-method=devtools",
-    "--throttling.cpuSlowdownMultiplier=4",
-    '--chrome-flags="--headless"',
-
-    "--output-path",
-    reportHTMLFile + '-04',
-  ]);
+      "--output-path",
+      reportHTMLFile + '-' + i + '.3g',
+    ]);
+  }
   // Compile static with webpack
   await staticCompile(webpackConfigPath, path.join(outputPath, 'page'));
 };

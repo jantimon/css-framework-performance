@@ -18,10 +18,8 @@ export default async function ({ __dirname }) {
   <html lang="en">
     <head>
       <meta charset="utf-8">
-      <title>CSS Framework Performance</title>
-      <meta name="description" content="">
-      <meta name="author" content="">
-    
+      <title>CSS-Framework Lighthouse Scores</title>
+      <meta name="author" content="Jan Nicklas">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
