@@ -1,6 +1,6 @@
 {
   "name": "react-emotion-ssr",
-  "description": "Styled-components used with react and ssr",
+  "description": "Emotion with react and server side rendering",
   "version": "1.0.0",
   "private": true,
   "main": "webpack.config.js",

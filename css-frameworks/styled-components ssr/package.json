@@ -1,6 +1,6 @@
 {
   "name": "styled-components-ssr",
-  "description": "Plain css classes used by react suspense with server side rendering",
+  "description": "Styled-components used with react and server side rendering",
   "version": "1.0.0",
   "private": true,
   "main": "webpack.config.js",

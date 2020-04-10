@@ -1,6 +1,6 @@
 {
   "name": "vanilla-react-ssr",
-  "description": "Plain css classes used by react with server side rendering",
+  "description": "Plain css classes used by react and server side rendering",
   "version": "1.0.0",
   "private": true,
   "main": "webpack.config.js",

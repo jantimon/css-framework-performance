@@ -1,6 +1,6 @@
 {
   "name": "vanilla-preact-ssr",
-  "description": "Plain css classes used by preact with server side rendering",
+  "description": "Plain css classes used by preact and server side rendering",
   "version": "1.0.0",
   "private": true,
   "main": "webpack.config.js",
