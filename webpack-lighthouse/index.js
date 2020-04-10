@@ -24,10 +24,11 @@ module.exports = async function generateReport(
     "html",
     "--output",
     "json",
+    "--throttling.cpuSlowdownMultiplier=4",
+    '--chrome-flags="--headless"',
+
     "--output-path",
     reportHTMLFile,
-    "--throttling.cpuSlowdownMultiplier=4",
-    '--chrome-flags="--headless"',
   ]);
   await startLighthouse([
     `http://127.0.0.1:${port}/index.html`,
@@ -35,10 +36,11 @@ module.exports = async function generateReport(
     "html",
     "--output",
     "json",
+    "--throttling.cpuSlowdownMultiplier=4",
+    '--chrome-flags="--headless"',
+
     "--output-path",
     reportHTMLFile + '-01',
-    "--throttling.cpuSlowdownMultiplier=4",
-    '--chrome-flags="--headless"',
   ]);
   await startLighthouse([
     `http://127.0.0.1:${port}/index.html`,
@@ -46,10 +48,11 @@ module.exports = async function generateReport(
     "html",
     "--output",
     "json",
+    "--throttling.cpuSlowdownMultiplier=4",
+    '--chrome-flags="--headless"',
+
     "--output-path",
     reportHTMLFile + '-02',
-    "--throttling.cpuSlowdownMultiplier=4",
-    '--chrome-flags="--headless"',
   ]);
   await startLighthouse([
     `http://127.0.0.1:${port}/index.html`,
@@ -57,10 +60,10 @@ module.exports = async function generateReport(
     "html",
     "--output",
     "json",
+    "--throttling.cpuSlowdownMultiplier=4",
+    '--chrome-flags="--headless"',
     "--output-path",
     reportHTMLFile + '-03',
-    "--throttling.cpuSlowdownMultiplier=4",
-    '--chrome-flags="--headless"',
   ]);
   await startLighthouse([
     `http://127.0.0.1:${port}/index.html`,
@@ -68,10 +71,11 @@ module.exports = async function generateReport(
     "html",
     "--output",
     "json",
-    "--output-path",
-    reportHTMLFile + '-04',
     "--throttling.cpuSlowdownMultiplier=4",
     '--chrome-flags="--headless"',
+
+    "--output-path",
+    reportHTMLFile + '-04',
   ]);
   // Compile static with webpack
   await staticCompile(webpackConfigPath, path.join(outputPath, 'page'));

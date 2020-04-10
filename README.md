@@ -12,6 +12,15 @@ The following table shows different speed measurments for the same demo implemen
 
 Every commit to the [css-framework-performance master branch](https://github.com/jantimon/css-framework-performance/) generates five lighthouse reports for all projects inside the [css-frameworks folder](https://github.com/jantimon/css-framework-performance/tree/master/css-frameworks).
 
+The teste is executed with the following parameters:
+
+```bash
+  lighthouse
+    http://127.0.0.1/
+    --throttling.cpuSlowdownMultiplier=4"
+    --chrome-flags="--headless"
+```
+
 ##### Feel free to contribute
 
 To add a new technology create a new demo implementation inside the [css-frameworks folder](https://github.com/jantimon/css-framework-performance/tree/master/css-frameworks).

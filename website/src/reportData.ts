@@ -5,9 +5,12 @@ const path = __non_webpack_require__("path") as typeof import("path");
 const util = __non_webpack_require__("util") as typeof import("util");
 const readFile = util.promisify(fs.readFile);
 
-/** Calculates the median value (only for odd array sizes) */
-const median = (numbers: number[]): number => {
-  return numbers.sort()[(numbers.length - 1) / 2];
+/** Calculates the avarage without the lowest and without the heighest value */
+const weightedAvarage = (numbers: number[]): number => {
+  return Math.round(Array.from(numbers)
+    .sort()
+    .slice(1,numbers.length - 1)
+    .reduce((sum, a) => sum + a, 0) / (numbers.length - 2))
 };
 
 /**
@@ -41,27 +44,27 @@ export const getReportData = async (codePath: string, reportPath: string) => {
       );
 
       const reportSummary = {
-        FirstContentfulPaint: median(
+        FirstContentfulPaint: weightedAvarage(
           lightHouseReports.map(
             (report) => report.audits["first-contentful-paint"].numericValue
           )
         ),
-        FirstMeaningfulPaint: median(
+        FirstMeaningfulPaint: weightedAvarage(
           lightHouseReports.map(
             (report) => report.audits["first-meaningful-paint"].numericValue
           )
         ),
-        FirstCPUIdle: median(
+        FirstCPUIdle: weightedAvarage(
           lightHouseReports.map(
             (report) => report.audits["first-cpu-idle"].numericValue
           )
         ),
-        TimeToInteractive: median(
+        TimeToInteractive: weightedAvarage(
           lightHouseReports.map(
             (report) => report.audits["interactive"].numericValue
           )
         ),
-        MaxPotentialFirstInputDelay: median(
+        MaxPotentialFirstInputDelay: weightedAvarage(
           lightHouseReports.map(
             (report) => report.audits["max-potential-fid"].numericValue
           )
