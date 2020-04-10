@@ -3,7 +3,6 @@
   "description": "Styled-components used with react",
   "version": "1.0.0",
   "private": true,
-  "main": "webpack.config.js",
   "dependencies": {
     "react": "16.13.0",
     "react-dom": "16.13.0",

@@ -3,7 +3,6 @@
   "description": "Plain css classes used by react suspense",
   "version": "1.0.0",
   "private": true,
-  "main": "webpack.config.js",
   "dependencies": {
     "css-loader": "3.4.2",
     "style-loader": "1.1.3",

@@ -1,5 +1,5 @@
-const ReactDOMServer = __non_webpack_require__('react-dom/server');
 import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 import { App } from './App';
 
 export default function () {

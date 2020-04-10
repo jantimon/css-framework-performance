@@ -1,7 +1,7 @@
 import React from 'react';
-import {render} from 'react-dom';
+import {hydrate} from 'react-dom';
 import './index.css';
 import { App } from './App';
 
-createRoot(document.getElementById("root")).render(<App />);
+hydrate(<App />, document.getElementById("root"));
 

@@ -3,7 +3,6 @@
   "description": "Emotion with react and server side rendering",
   "version": "1.0.0",
   "private": true,
-  "main": "webpack.config.js",
   "dependencies": {
     "@emotion/cache": "10.0.29",
     "@emotion/core": "^10.0.28",

@@ -3,7 +3,6 @@
   "description": "Plain css classes used with Vue",
   "version": "1.0.0",
   "private": true,
-  "main": "webpack.config.js",
   "dependencies": {
     "vue": "2.6.11"
   },

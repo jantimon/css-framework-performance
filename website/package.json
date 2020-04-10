@@ -2,7 +2,6 @@
   "name": "website",
   "version": "1.0.0",
   "private": true,
-  "main": "webpack.config.js",
   "dependencies": {
     "preact": "10.3.4",
     "preact-render-to-string": "5.1.4"

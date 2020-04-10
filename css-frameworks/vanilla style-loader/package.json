@@ -3,7 +3,6 @@
   "description": "Plain css embededed using the webpack style-loader",
   "version": "1.0.0",
   "private": true,
-  "main": "webpack.config.js",
   "dependencies": {
     "css-loader": "3.4.2",
     "html-webpack-plugin": "4.0.4",
