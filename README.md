@@ -4,7 +4,7 @@
 
 [![Deploy Task](https://github.com/jantimon/css-framework-performance/workflows/github%20pages/badge.svg)](https://jantimon.github.io/css-framework-performance/)
 
-The following table shows different speed measurments for the same demo implemented with different js and css technologies. The amount of time it takes for the page to become fully interactive.
+The following table shows different speed measurments for the same demo implemented with different js and css technologies. The results are sorted by the amount of time it takes for the page to become fully interactive.
 
 <a href="https://jantimon.github.io/css-framework-performance/" id="report-table">See the results</a>
 
