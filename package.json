@@ -12,7 +12,8 @@
   "scripts": {
     "postinstall": "lerna bootstrap --hoist",
     "reports": "node css-frameworks",
-    "website": "webpack --config website/webpack.config.js --output-path public"
+    "website": "webpack --config website/webpack.config.js --output-path public",
+    "website:dev": "webpack-dev-server --config website/webpack.config.js --content-base public/"
   },
   "bugs": {
     "url": "https://github.com/jantimon/css-framework-performance/issues"

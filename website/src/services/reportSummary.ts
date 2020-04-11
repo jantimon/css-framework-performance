@@ -5,12 +5,9 @@ const path = __non_webpack_require__("path") as typeof import("path");
 const util = __non_webpack_require__("util") as typeof import("util");
 const readFile = util.promisify(fs.readFile);
 
-/** Calculates the avarage without the lowest and without the heighest value */
-const weightedAvarage = (numbers: number[]): number => {
-  return Math.round(Array.from(numbers)
-    .sort()
-    .slice(1,numbers.length - 1)
-    .reduce((sum, a) => sum + a, 0) / (numbers.length - 2))
+/** Calculates the median and returns the index */
+const medianIndex = (numbers: number[]): number => {
+  return numbers.indexOf(Array.from(numbers).sort()[(numbers.length - 1) / 2]);
 };
 
 /**
@@ -43,35 +40,27 @@ export const getReportData = async (codePath: string, reportPath: string) => {
         (report) => JSON.parse(report) as typeof import("./demo.report.json")
       );
 
+      const medianReport =
+        lightHouseReports[
+          medianIndex(
+            lightHouseReports.map(
+              (report) => report.audits["interactive"].numericValue
+            )
+          )
+        ];
+
       const reportSummary = {
-        FirstContentfulPaint: weightedAvarage(
-          lightHouseReports.map(
-            (report) => report.audits["first-contentful-paint"].numericValue
-          )
-        ),
-        FirstMeaningfulPaint: weightedAvarage(
-          lightHouseReports.map(
-            (report) => report.audits["first-meaningful-paint"].numericValue
-          )
-        ),
-        FirstCPUIdle: weightedAvarage(
-          lightHouseReports.map(
-            (report) => report.audits["first-cpu-idle"].numericValue
-          )
-        ),
-        TimeToInteractive: weightedAvarage(
-          lightHouseReports.map(
-            (report) => report.audits["interactive"].numericValue
-          )
-        ),
-        MaxPotentialFirstInputDelay: weightedAvarage(
-          lightHouseReports.map(
-            (report) => report.audits["max-potential-fid"].numericValue
-          )
-        ),
-        Requests:
-          lightHouseReports[0].audits["network-requests"].details.items.length,
-        TransferSize: lightHouseReports[0].audits[
+        medianIndex: lightHouseReports.indexOf(medianReport),
+        FirstContentfulPaint:
+          medianReport.audits["first-contentful-paint"].numericValue,
+        FirstMeaningfulPaint:
+          medianReport.audits["first-meaningful-paint"].numericValue,
+        FirstCPUIdle: medianReport.audits["first-cpu-idle"].numericValue,
+        TimeToInteractive: medianReport.audits["interactive"].numericValue,
+        MaxPotentialFirstInputDelay:
+          medianReport.audits["max-potential-fid"].numericValue,
+        Requests: medianReport.audits["network-requests"].details.items.length,
+        TransferSize: medianReport.audits[
           "network-requests"
         ].details.items.reduce((sum, item) => sum + item.transferSize, 0),
       };

@@ -6,7 +6,8 @@ const execa = require("execa");
 module.exports = async function generateReport(
   port,
   webpackConfigPath,
-  outputPath
+  outputPath,
+  lighthouseArguments
 ) {
   // Compile with webpack
   const webpackConfig = require(webpackConfigPath);
@@ -25,12 +26,9 @@ module.exports = async function generateReport(
       "html",
       "--output",
       "json",
-      "--throttling-method=devtools",
-      "--throttling.cpuSlowdownMultiplier=4",
-      '--chrome-flags="--headless"',
-
       "--output-path",
-      reportHTMLFile + '-' + i + '.3g',
+      reportHTMLFile + '-' + i,
+      ...(lighthouseArguments || [])
     ]);
   }
   // Compile static with webpack

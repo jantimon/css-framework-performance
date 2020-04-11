@@ -6,13 +6,13 @@ th {
   white-space: nowrap;
 }
 
-td:first-child {
+tbody td:first-child {
   position: sticky;
   left: 20px;
   background: white;
 }
 
-td:first-child:before {
+tbody td:first-child:before {
   content: '';
   position: absolute;
   left: -20px;
@@ -20,4 +20,17 @@ td:first-child:before {
   top: 0;
   bottom: 0;
   background: white;
+}
+
+tfoot td {
+  position: sticky;
+  bottom: 0;
+  right: 5px;
+  background: white;
+  border-top: 1px solid #E1E1E1;
+  text-align: right;
+}
+
+.no-border td {
+  border-bottom-color: transparent;
 }

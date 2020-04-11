@@ -6,6 +6,17 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 module.exports = {
   context: __dirname,
   mode: 'production',
+
+  module: {
+    rules : [
+      {
+        test: /\.json$/,
+        type: 'javascript/auto',
+        resourceQuery: /javascript/
+      }
+    ],
+  },
+
   plugins: [
     // Generate a base html file and injects all generated css and js files
     new HtmlWebpackPlugin({

@@ -1,15 +1,19 @@
 import { h } from "preact";
 import render from "preact-render-to-string";
 import { App } from "./App";
-import { getReportData } from "./reportData";
-import { renderReadme } from "./renderReadme";
+import { getReportData } from "./services/reportSummary";
+import { renderReadme } from "./services/readmeRenderer";
 declare var __non_webpack_require__: NodeRequire;
 const path = __non_webpack_require__("path") as typeof import("path");
 
 export default async function ({ __dirname }) {
-  const reportData = await getReportData(
+  const reportData3g = await getReportData(
     path.resolve(__dirname, "../../css-frameworks/"),
-    path.resolve(__dirname, "../../public/reports/")
+    path.resolve(__dirname, "../../public/reports/3g")
+  );
+  const reportData4g = await getReportData(
+    path.resolve(__dirname, "../../css-frameworks/"),
+    path.resolve(__dirname, "../../public/reports/4g")
   );
 
   const readme = await renderReadme(path.resolve(__dirname, "../../README.md"));
@@ -38,10 +42,16 @@ export default async function ({ __dirname }) {
           </div>
         </div>
 
+        <h2>3g</h2>
+        <div id="root3g">${render(<App reportsUrl="/reports/4g/" reportData={reportData3g} />)}</div>
+        <script id="reportData3g" type="text/json">${JSON.stringify(
+          reportData3g
+        )}</script>
 
-        <div id="root">${render(<App reportData={reportData} />)}</div>
-        <script id="reportData" type="text/json">${JSON.stringify(
-          reportData
+        <h2>4g</h2>
+        <div id="root4g">${render(<App reportsUrl="/reports/4g/" reportData={reportData4g} />)}</div>
+        <script id="reportData4g" type="text/json">${JSON.stringify(
+          reportData3g
         )}</script>
 
 
