@@ -40,17 +40,15 @@ export const getReportData = async (codePath: string, reportPath: string) => {
         (report) => JSON.parse(report) as typeof import("./demo.report.json")
       );
 
-      const medianReport =
-        lightHouseReports[
-          medianIndex(
-            lightHouseReports.map(
-              (report) => report.audits["interactive"].numericValue
-            )
-          )
-        ];
+      const medianReportIndex = medianIndex(
+        lightHouseReports.map(
+          (report) => report.audits["interactive"].numericValue + report.audits["first-contentful-paint"].numericValue
+        )
+      );
+      const medianReport = lightHouseReports[medianReportIndex];
 
       const reportSummary = {
-        medianIndex: lightHouseReports.indexOf(medianReport),
+        medianIndex: medianReportIndex,
         FirstContentfulPaint:
           medianReport.audits["first-contentful-paint"].numericValue,
         FirstMeaningfulPaint:

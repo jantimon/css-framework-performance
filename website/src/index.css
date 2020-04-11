@@ -33,4 +33,5 @@ tfoot td {
 
 .no-border td {
   border-bottom-color: transparent;
+  padding-bottom: 0;
 }

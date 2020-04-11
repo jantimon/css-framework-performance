@@ -38,18 +38,24 @@ export default async function ({ __dirname }) {
 
         <div style="position:sticky; left: 20px; max-width: calc(100vw - 20px)">
           <div style="max-width: 800px">
-          ${readme.replace(/<a[^>]+id="report-table".*?<\/a>/i, `
+          ${readme
+            .replace('<span id="badges"></span>', 
+              `&nbsp;<a class="github-button" href="https://github.com/jantimon/css-framework-performance" data-icon="octicon-star" aria-label="Star jantimon/css-framework-performance on GitHub">Star</a>
+               <a class="github-button" href="https://github.com/jantimon/css-framework-performance" aria-label="View on GitHub">View on GitHub</a>
+              <script defer src="https://buttons.github.io/buttons.js"></script>
+            `)
+            .replace(/<a[^>]+id="report-table".*?<\/a>/i, `
           </div>
         </div>
 
         <h2>3g</h2>
-        <div id="root3g">${render(<App reportsUrl="/reports/4g/" reportData={reportData3g} />)}</div>
+        <div id="root3g">${render(<App reportsUrl="reports/4g/" reportData={reportData3g} />)}</div>
         <script id="reportData3g" type="text/json">${JSON.stringify(
           reportData3g
         )}</script>
 
         <h2>4g</h2>
-        <div id="root4g">${render(<App reportsUrl="/reports/4g/" reportData={reportData4g} />)}</div>
+        <div id="root4g">${render(<App reportsUrl="reports/4g/" reportData={reportData4g} />)}</div>
         <script id="reportData4g" type="text/json">${JSON.stringify(
           reportData3g
         )}</script>

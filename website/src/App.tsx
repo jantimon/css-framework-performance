@@ -111,7 +111,7 @@ const Report = ({ report, reportsUrl, showScreenshots }: ReportProps) => (
       <td style={{ textAlign: "right" }}>
         <div style={{ whiteSpace: "nowrap" }}>
           <a
-            href={`${reportsUrl}/${report.projectFolderName}/index-${report.lighthouseReportSummary.medianIndex}.report.html`}
+            href={`${reportsUrl}${report.projectFolderName}/index-${report.lighthouseReportSummary.medianIndex}.report.html`}
             title="Report 1"
           >
             Details
@@ -132,7 +132,7 @@ const Report = ({ report, reportsUrl, showScreenshots }: ReportProps) => (
       <td colSpan={8}>
         <FilmStrip
           medianReportIndex={report.lighthouseReportSummary.medianIndex}
-          projectFolderName={reportsUrl.substr(1) + report.projectFolderName}
+          projectFolderName={reportsUrl + report.projectFolderName}
           firstMeaningfulPaint={
             report.lighthouseReportSummary.FirstMeaningfulPaint
           }
@@ -149,7 +149,7 @@ const Time = ({ children, label }: { label: string; children: number }) => (
     title={`${label}: ${children} ms`}
     style={{ whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}
   >
-    ⏱️ {(Math.round(children / 100) / 10).toFixed(1)} s
+    ⏱️ {(children / 1000).toFixed(1)} s
   </span>
 );
 
@@ -158,7 +158,7 @@ const Size = ({ children, label }: { label: string; children: number }) => (
     title={`${label}: ${children} byte`}
     style={{ whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}
   >
-    📏 {(Math.round(children / 100) / 10).toFixed(1)} kb
+    📏 {(children / 1000).toFixed(1)} kb
   </span>
 );
 
@@ -218,13 +218,13 @@ const FilmStrip = ({
   );
   const firstFrameIndexAfterTimeToInteractive = useMemo(
     () =>
-      thumbnails.findIndex((thumbnail) => thumbnail.timing > timeToInteractive),
+      thumbnails.findIndex((thumbnail) => thumbnail.timing >= timeToInteractive),
     [thumbnails, timeToInteractive]
   );
   const firstFrameIndexAfterFirstMeaningfulPaint = useMemo(
     () =>
       thumbnails.findIndex(
-        (thumbnail) => thumbnail.timing > firstMeaningfulPaint
+        (thumbnail) => thumbnail.timing >= firstMeaningfulPaint
       ),
     [thumbnails, timeToInteractive]
   );
@@ -235,7 +235,7 @@ const FilmStrip = ({
           style={{
             display: "inline-block",
             position: "relative",
-            height: 80,
+            height: 50,
             overflow: 'hidden',
             width: "100%",
             border:
