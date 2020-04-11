@@ -7,6 +7,10 @@ module.exports = {
   context: __dirname,
   mode: 'production',
 
+  output: {
+    publicPath: '/css-framework-performance/'
+  },
+
   module: {
     rules : [
       {
