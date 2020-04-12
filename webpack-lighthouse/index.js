@@ -19,7 +19,7 @@ module.exports = async function generateReport(
     : path.join(outputPath, "index");
   // Generate report  
   mkdirp(path.dirname(reportHTMLFile));
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 7; i++) {
     await startLighthouse([
       `http://127.0.0.1:${port}/index.html`,
       "--output",

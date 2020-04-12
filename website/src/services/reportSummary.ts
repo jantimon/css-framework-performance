@@ -23,6 +23,7 @@ export const getReportData = async (codePath: string, reportPath: string) => {
       const projectReports = await glob("*.report.json", {
         cwd: path.join(reportPath, projectFolderName),
       });
+      projectReports.sort();
       const projectPackageJson = await readFile(
         path.join(codePath, projectFolderName, "package.json")
       );

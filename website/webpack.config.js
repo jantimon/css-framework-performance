@@ -8,7 +8,8 @@ module.exports = {
   mode: 'production',
 
   output: {
-    publicPath: '/css-framework-performance/'
+    publicPath: '/css-framework-performance/',
+    chunkFilename: 'chunk/[name]-[contenthash]'
   },
 
   module: {

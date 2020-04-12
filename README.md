@@ -10,7 +10,8 @@ The following table shows [different speed measurments](https://developers.googl
 
 ##### How do you generate these values?
 
-Every commit to the [css-framework-performance master branch](https://github.com/jantimon/css-framework-performance/) generates five lighthouse reports for each project in the [css-frameworks folder](https://github.com/jantimon/css-framework-performance/tree/master/css-frameworks).
+Every commit to the [css-framework-performance master branch](https://github.com/jantimon/css-framework-performance/) generates 5 lighthouse reports for each project in the [css-frameworks folder](https://github.com/jantimon/css-framework-performance/tree/master/css-frameworks).  
+The [https://en.wikipedia.org/wiki/Median](median) report is published to github pages.
 
 The network throtteling is using the [lighthouse devtools defaults](https://github.com/GoogleChrome/lighthouse/blob/master/docs/throttling.md). 
 

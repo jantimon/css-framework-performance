@@ -49,7 +49,7 @@ export default async function ({ __dirname }) {
         </div>
 
         <h2>3g</h2>
-        <div id="root3g">${render(<App reportsUrl="reports/4g/" reportData={reportData3g} />)}</div>
+        <div id="root3g">${render(<App reportsUrl="reports/3g/" reportData={reportData3g} />)}</div>
         <script id="reportData3g" type="text/json">${JSON.stringify(
           reportData3g
         )}</script>
@@ -57,7 +57,7 @@ export default async function ({ __dirname }) {
         <h2>4g</h2>
         <div id="root4g">${render(<App reportsUrl="reports/4g/" reportData={reportData4g} />)}</div>
         <script id="reportData4g" type="text/json">${JSON.stringify(
-          reportData3g
+          reportData4g
         )}</script>
 
 
