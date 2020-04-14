@@ -5,6 +5,17 @@ const path = __non_webpack_require__("path") as typeof import("path");
 const util = __non_webpack_require__("util") as typeof import("util");
 const readFile = util.promisify(fs.readFile);
 
+export interface LighthouseSummary {
+    medianIndex: number;
+    FirstContentfulPaint: number;
+    FirstMeaningfulPaint: number;
+    FirstCPUIdle: number;
+    TimeToInteractive: number;
+    MaxPotentialFirstInputDelay: number;
+    Requests: number;
+    TransferSize: number;
+}
+
 /** Calculates the median and returns the index */
 const medianIndex = (numbers: number[]): number => {
   return numbers.indexOf(Array.from(numbers).sort()[(numbers.length - 1) / 2]);
@@ -48,7 +59,7 @@ export const getReportData = async (codePath: string, reportPath: string) => {
       );
       const medianReport = lightHouseReports[medianReportIndex];
 
-      const reportSummary = {
+      const reportSummary: LighthouseSummary = {
         medianIndex: medianReportIndex,
         FirstContentfulPaint:
           medianReport.audits["first-contentful-paint"].numericValue,
@@ -81,5 +92,32 @@ export const getReportData = async (codePath: string, reportPath: string) => {
       ? -1
       : 0
   );
-  return reportData;
+  
+  return {
+    reportMinValues: calculateMinValues(reportData.map((report) => report.lighthouseReportSummary)),
+    reports: reportData
+  };
 };
+
+const calculateMinValues = (lighthouseReportSummary: Array<LighthouseSummary>) => {
+  const keys = [
+    'FirstContentfulPaint',
+    'FirstMeaningfulPaint',
+    'FirstCPUIdle',
+    'TimeToInteractive',
+    'MaxPotentialFirstInputDelay',
+    'Requests',
+    'TransferSize',
+  ] as const;
+  const minValues = {} as {[key in 'FirstContentfulPaint' |
+  'FirstMeaningfulPaint' |
+  'FirstCPUIdle' |
+  'TimeToInteractive' |
+  'MaxPotentialFirstInputDelay' |
+  'Requests' |
+  'TransferSize']: number};
+  keys.forEach((key) => {
+    minValues[key] = Math.min(... lighthouseReportSummary.map((report) => report[key]))
+  })
+  return minValues;
+}

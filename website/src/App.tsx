@@ -18,57 +18,113 @@ interface Report {
 }
 
 interface AppProps {
-  reportsUrl: string,
-  reportData: Array<Report>;
+  reportsUrl: string;
+  reportMinValues: {
+    FirstContentfulPaint: number;
+    FirstMeaningfulPaint: number;
+    FirstCPUIdle: number;
+    TimeToInteractive: number;
+    MaxPotentialFirstInputDelay: number;
+    Requests: number;
+    TransferSize: number;
+  };
+  reports: Array<Report>;
 }
 
-export const App = ({ reportData, reportsUrl }: AppProps) => {
+export const App = ({ reports, reportsUrl, reportMinValues }: AppProps) => {
   const [showScreenshots, setShowScreenshots] = useState(true);
-  const [sortBy, setSortBy] = useState<keyof Report["lighthouseReportSummary"]>('TimeToInteractive');
-  const sortedReports = useMemo(() => Array.from(reportData).sort((reportA, reportB) => {
-    if (reportA.lighthouseReportSummary[sortBy] > reportB.lighthouseReportSummary[sortBy]) {
-      return 1;
-    } else if (reportA.lighthouseReportSummary[sortBy] === reportB.lighthouseReportSummary[sortBy]) {
-      return 0;
-    }
-    return -1;
-  }), [sortBy, reportData])
+  const [sortBy, setSortBy] = useState<keyof Report["lighthouseReportSummary"]>(
+    "TimeToInteractive"
+  );
+  const sortedReports = useMemo(
+    () =>
+      Array.from(reports).sort((reportA, reportB) => {
+        if (
+          reportA.lighthouseReportSummary[sortBy] >
+          reportB.lighthouseReportSummary[sortBy]
+        ) {
+          return 1;
+        } else if (
+          reportA.lighthouseReportSummary[sortBy] ===
+          reportB.lighthouseReportSummary[sortBy]
+        ) {
+          return 0;
+        }
+        return -1;
+      }),
+    [sortBy, reports]
+  );
   return (
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th onClick={() => setSortBy('TransferSize')}>Transfer Size</th>
-        <th onClick={() => setSortBy('FirstMeaningfulPaint')}>First Meaningful Paint</th>
-        <th onClick={() => setSortBy('FirstContentfulPaint')}>First Contentful Paint</th>
-        <th onClick={() => setSortBy('TimeToInteractive')}>Time To Interactive</th>
-        <th onClick={() => setSortBy('FirstCPUIdle')}>First Cpu Idle</th>
-        <th>Demo</th>
-        <th>Full Report</th>
-      </tr>
-    </thead>
-    <tbody>
-      {sortedReports.map((report) => (
-        <Report key={report.name} showScreenshots={showScreenshots} report={report} reportsUrl={reportsUrl} />
-      ))}
-    </tbody>
-    <tfoot>
-      <tr>
-        <td colSpan={4}></td>
-        <td colSpan={4}><label><input type="checkbox" checked={showScreenshots} onChange={() => setShowScreenshots(!showScreenshots) }/> screenshots</label></td>
-      </tr>
-    </tfoot>
-  </table>
-  )
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th className={sortBy === 'TransferSize' ? 'sorted': 'sortable'} onClick={() => setSortBy("TransferSize")}>Transfer Size</th>
+          <th className={sortBy === 'FirstMeaningfulPaint' ? 'sorted': 'sortable'} onClick={() => setSortBy("FirstMeaningfulPaint")}>
+            First Meaningful Paint
+          </th>
+          <th className={sortBy === 'FirstContentfulPaint' ? 'sorted': 'sortable'} onClick={() => setSortBy("FirstContentfulPaint")}>
+            First Contentful Paint
+          </th>
+          <th className={sortBy === 'TimeToInteractive' ? 'sorted': 'sortable'} onClick={() => setSortBy("TimeToInteractive")}>
+            Time To Interactive
+          </th>
+          <th className={sortBy === 'FirstCPUIdle' ? 'sorted': 'sortable'} onClick={() => setSortBy("FirstCPUIdle")}>First Cpu Idle</th>
+          <th>Demo</th>
+          <th>Full Report</th>
+        </tr>
+      </thead>
+      <tbody>
+        {sortedReports.map((report) => (
+          <Report
+            reportMinValues={reportMinValues}
+            key={report.name}
+            showScreenshots={showScreenshots}
+            report={report}
+            reportsUrl={reportsUrl}
+          />
+        ))}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colSpan={4}></td>
+          <td colSpan={4}>
+            <label>
+              <input
+                type="checkbox"
+                checked={showScreenshots}
+                onChange={() => setShowScreenshots(!showScreenshots)}
+              />{" "}
+              screenshots
+            </label>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  );
 };
 
 interface ReportProps {
   report: Report;
-  reportsUrl: string,
-  showScreenshots: boolean
+  reportsUrl: string;
+  showScreenshots: boolean;
+  reportMinValues: {
+    FirstContentfulPaint: number;
+    FirstMeaningfulPaint: number;
+    FirstCPUIdle: number;
+    TimeToInteractive: number;
+    MaxPotentialFirstInputDelay: number;
+    Requests: number;
+    TransferSize: number;
+  };
 }
 
-const Report = ({ report, reportsUrl, showScreenshots }: ReportProps) => (
+const Report = ({
+  report,
+  reportsUrl,
+  showScreenshots,
+  reportMinValues,
+}: ReportProps) => (
   <Fragment>
     <tr className="no-border">
       <td style={{ whiteSpace: "nowrap" }}>
@@ -83,21 +139,41 @@ const Report = ({ report, reportsUrl, showScreenshots }: ReportProps) => (
         <Time label="First Meaningful Paint">
           {report.lighthouseReportSummary.FirstMeaningfulPaint}
         </Time>
+        <RelativeDifference
+          label="slower than fastest"
+          value={report.lighthouseReportSummary.FirstMeaningfulPaint}
+          baseValue={reportMinValues.FirstMeaningfulPaint}
+        />
       </td>
       <td style={{ textAlign: "center" }}>
         <Time label="First Contentful Paint">
           {report.lighthouseReportSummary.FirstContentfulPaint}
         </Time>
+        <RelativeDifference
+          label="slower than fastest"
+          value={report.lighthouseReportSummary.FirstContentfulPaint}
+          baseValue={reportMinValues.FirstContentfulPaint}
+        />
       </td>
       <td style={{ textAlign: "center" }}>
         <Time label="Time To Interactive">
           {report.lighthouseReportSummary.TimeToInteractive}
         </Time>
+        <RelativeDifference
+          label="slower than fastest"
+          value={report.lighthouseReportSummary.TimeToInteractive}
+          baseValue={reportMinValues.TimeToInteractive}
+        />
       </td>
       <td style={{ textAlign: "center" }}>
         <Time label="First Cpu Idle">
           {report.lighthouseReportSummary.FirstCPUIdle}
         </Time>
+        <RelativeDifference
+          label="slower than fastest"
+          value={report.lighthouseReportSummary.FirstCPUIdle}
+          baseValue={reportMinValues.FirstCPUIdle}
+        />
       </td>
       <td>
         <a href={`reports/${report.projectFolderName}/page/`}>Demo</a>
@@ -119,7 +195,7 @@ const Report = ({ report, reportsUrl, showScreenshots }: ReportProps) => (
         </div>
       </td>
     </tr>
-    <tr className={showScreenshots && "no-border" || ""}>
+    <tr className={(showScreenshots && "no-border") || ""}>
       <td colSpan={4}>
         <small style={{ maxWidth: "calc(100vw - 40px)" }}>
           {report.description}
@@ -128,18 +204,18 @@ const Report = ({ report, reportsUrl, showScreenshots }: ReportProps) => (
       <td colSpan={4}></td>
     </tr>
     {showScreenshots && (
-    <tr>
-      <td colSpan={8}>
-        <FilmStrip
-          medianReportIndex={report.lighthouseReportSummary.medianIndex}
-          projectFolderName={reportsUrl + report.projectFolderName}
-          firstMeaningfulPaint={
-            report.lighthouseReportSummary.FirstMeaningfulPaint
-          }
-          timeToInteractive={report.lighthouseReportSummary.TimeToInteractive}
-        />
-      </td>
-    </tr>
+      <tr>
+        <td colSpan={8}>
+          <FilmStrip
+            medianReportIndex={report.lighthouseReportSummary.medianIndex}
+            projectFolderName={reportsUrl + report.projectFolderName}
+            firstMeaningfulPaint={
+              report.lighthouseReportSummary.FirstMeaningfulPaint
+            }
+            timeToInteractive={report.lighthouseReportSummary.TimeToInteractive}
+          />
+        </td>
+      </tr>
     )}
   </Fragment>
 );
@@ -218,7 +294,9 @@ const FilmStrip = ({
   );
   const firstFrameIndexAfterTimeToInteractive = useMemo(
     () =>
-      thumbnails.findIndex((thumbnail) => thumbnail.timing >= timeToInteractive),
+      thumbnails.findIndex(
+        (thumbnail) => thumbnail.timing >= timeToInteractive
+      ),
     [thumbnails, timeToInteractive]
   );
   const firstFrameIndexAfterFirstMeaningfulPaint = useMemo(
@@ -236,7 +314,7 @@ const FilmStrip = ({
             display: "inline-block",
             position: "relative",
             height: 50,
-            overflow: 'hidden',
+            overflow: "hidden",
             width: "100%",
             border:
               "1px solid " +
@@ -269,7 +347,7 @@ const FilmStrip = ({
           {timing > 0 && (
             <span
               style={{
-                background: 'white',
+                background: "white",
                 position: "absolute",
                 right: 3,
                 bottom: 3,
@@ -283,4 +361,20 @@ const FilmStrip = ({
       ))}
     </div>
   );
+};
+
+const RelativeDifference = ({
+  value,
+  baseValue,
+  label,
+}: {
+  value: number;
+  baseValue: number;
+  label: string;
+}) => {
+  const percantage = Math.round((100 * value) / baseValue - 100);
+  return (<small style={{display: 'block', color: '#ababab'}} title={percantage + "% " + label}>
+    {percantage > 0 ? "+" : percantage < 0 ? "-" : " "}
+    {percantage}%
+  </small>);
 };
