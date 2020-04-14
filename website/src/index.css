@@ -42,7 +42,7 @@ tfoot td {
 }
 .sorted::before {
   position: absolute;
-  bottom: -5px;
+  bottom: -15px;
   left: 50%;
   transform: translateX(-50%);
   content: "🔻"
