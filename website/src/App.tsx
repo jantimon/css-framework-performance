@@ -59,17 +59,41 @@ export const App = ({ reports, reportsUrl, reportMinValues }: AppProps) => {
       <thead>
         <tr>
           <th>Name</th>
-          <th className={sortBy === 'TransferSize' ? 'sorted': 'sortable'} onClick={() => setSortBy("TransferSize")}>Transfer Size</th>
-          <th className={sortBy === 'FirstMeaningfulPaint' ? 'sorted': 'sortable'} onClick={() => setSortBy("FirstMeaningfulPaint")}>
-            First Meaningful Paint
+          <th onClick={() => setSortBy("TransferSize")}>
+            <span className={sortBy === "TransferSize" ? "sorted" : "sortable"}>
+              Transfer Size
+            </span>
           </th>
-          <th className={sortBy === 'FirstContentfulPaint' ? 'sorted': 'sortable'} onClick={() => setSortBy("FirstContentfulPaint")}>
-            First Contentful Paint
+          <th onClick={() => setSortBy("FirstMeaningfulPaint")}>
+            <span
+              className={
+                sortBy === "FirstMeaningfulPaint" ? "sorted" : "sortable"
+              }
+            >
+              First Meaningful Paint
+            </span>
           </th>
-          <th className={sortBy === 'TimeToInteractive' ? 'sorted': 'sortable'} onClick={() => setSortBy("TimeToInteractive")}>
-            Time To Interactive
+          <th onClick={() => setSortBy("FirstContentfulPaint")}>
+            <span
+              className={
+                sortBy === "FirstContentfulPaint" ? "sorted" : "sortable"
+              }
+            >
+              First Contentful Paint
+            </span>
           </th>
-          <th className={sortBy === 'FirstCPUIdle' ? 'sorted': 'sortable'} onClick={() => setSortBy("FirstCPUIdle")}>First Cpu Idle</th>
+          <th onClick={() => setSortBy("TimeToInteractive")}>
+            <span
+              className={sortBy === "TimeToInteractive" ? "sorted" : "sortable"}
+            >
+              Time To Interactive
+            </span>
+          </th>
+          <th onClick={() => setSortBy("FirstCPUIdle")}>
+            <span className={sortBy === "FirstCPUIdle" ? "sorted" : "sortable"}>
+              First Cpu Idle
+            </span>
+          </th>
           <th>Demo</th>
           <th>Full Report</th>
         </tr>
@@ -373,8 +397,13 @@ const RelativeDifference = ({
   label: string;
 }) => {
   const percantage = Math.round((100 * value) / baseValue - 100);
-  return (<small style={{display: 'block', color: '#ababab'}} title={percantage + "% " + label}>
-    {percantage > 0 ? "+" : percantage < 0 ? "-" : " "}
-    {percantage}%
-  </small>);
+  return (
+    <small
+      style={{ display: "block", color: "#ababab" }}
+      title={percantage + "% " + label}
+    >
+      {percantage > 0 ? "+" : percantage < 0 ? "-" : " "}
+      {percantage}%
+    </small>
+  );
 };

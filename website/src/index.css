@@ -37,6 +37,7 @@ tfoot td {
 }
 
 .sorted {
+  display: block;
   position: relative;
 }
 .sorted::before {
