@@ -11,10 +11,6 @@ const execa = require('execa');
       "--throttling.cpuSlowdownMultiplier=4",
       '--chrome-flags="--headless"'
     ]);
-    await executeTest(dirs[i], '4g', [
-      "--throttling.cpuSlowdownMultiplier=4",
-      '--chrome-flags="--headless"'
-    ]);
   }
   console.log("done.");
 })();

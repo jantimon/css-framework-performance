@@ -13,23 +13,10 @@ The following table shows [different speed measurments](https://developers.googl
 Every commit to the [css-framework-performance master branch](https://github.com/jantimon/css-framework-performance/) generates 5 lighthouse reports for each project in the [css-frameworks folder](https://github.com/jantimon/css-framework-performance/tree/master/css-frameworks).  
 The [https://en.wikipedia.org/wiki/Median](median) report is published to github pages.
 
+
+###### [throttling](https://github.com/GoogleChrome/lighthouse/blob/master/docs/throttling.md):
+
 The network throtteling is using the [lighthouse devtools defaults](https://github.com/GoogleChrome/lighthouse/blob/master/docs/throttling.md). 
-
-###### [3g](https://developers.google.com/web/tools/lighthouse/v3/migration#invocation):
-
-- Latency: 562.5ms
-- Throughput: 1.4Mbps down / 675 Kbps up.
-- Packet loss: none.
-
-```bash
-  lighthouse
-    http://127.0.0.1/
-    --throttling.cpuSlowdownMultiplier=4
-    --chrome-flags="--headless"
-    --throttling-method=devtools
-```
-
-###### [4g](https://github.com/GoogleChrome/lighthouse/blob/master/docs/throttling.md):
 
 - Latency: 150ms
 - Throughput: 1.6Mbps down.
@@ -40,6 +27,7 @@ The network throtteling is using the [lighthouse devtools defaults](https://gith
     http://127.0.0.1/
     --throttling.cpuSlowdownMultiplier=4
     --chrome-flags="--headless"
+    --throttling-method=devtools
 ```
 
 ##### Feel free to contribute

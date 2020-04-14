@@ -13,12 +13,6 @@ export default async function ({ __dirname }) {
     path.resolve(__dirname, "../../css-frameworks/"),
     path.resolve(__dirname, "../../public/reports/3g")
   )};
-  const reportData4g = {
-    reportsUrl: 'reports/4g/',   
-    ...await getReportData(
-    path.resolve(__dirname, "../../css-frameworks/"),
-    path.resolve(__dirname, "../../public/reports/4g")
-  )};
 
   const readme = await renderReadme(path.resolve(__dirname, "../../README.md"));
 
@@ -52,18 +46,10 @@ export default async function ({ __dirname }) {
           </div>
         </div>
 
-        <h2>3g</h2>
         <div id="root3g">${render(<App {...reportData3g} />)}</div>
         <script id="reportData3g" type="text/json">${JSON.stringify(
           reportData3g
         )}</script>
-
-        <h2>4g</h2>
-        <div id="root4g">${render(<App {...reportData4g}  />)}</div>
-        <script id="reportData4g" type="text/json">${JSON.stringify(
-          reportData4g
-        )}</script>
-
 
         <div style="position:sticky; left: 20px; max-width: calc(100vw - 20px)">
           <div style="max-width: 800px">
