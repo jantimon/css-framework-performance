@@ -200,10 +200,10 @@ const Report = ({
         />
       </td>
       <td>
-        <a href={`reports/${report.projectFolderName}/page/`}>Demo</a>
+        <a href={`${reportsUrl}${report.projectFolderName}/page/`}>Demo</a>
         <br />
         <a
-          href={`https://github.com/jantimon/css-framework-performance/tree/master/css-frameworks/vanilla`}
+          href={`https://github.com/jantimon/css-framework-performance/tree/master/css-frameworks/${report.projectFolderName}`}
         >
           Code
         </a>
