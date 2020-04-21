@@ -1,5 +1,5 @@
 {
-  "name": "stitches",
+  "name": "react-stitches-css",
   "version": "1.0.0",
   "private": true,
   "main": "webpack.config.js",
