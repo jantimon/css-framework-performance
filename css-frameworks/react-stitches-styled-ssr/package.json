@@ -1,0 +1,21 @@
+{
+  "name": "stitches-styled-ssr",
+  "version": "1.0.0",
+  "private": true,
+  "main": "webpack.config.js",
+  "dependencies": {
+    "react": "16.13.0",
+    "react-dom": "16.13.0",
+    "@stitches/css": "1.4.2",
+    "@stitches/styled": "1.4.2"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "4.0.0-beta.14",
+    "scss-config-webpack-plugin": "2.0.0",
+    "ts-config-webpack-plugin": "2.0.0",
+    "typescript": "3.8.3",
+    "webpack": "4.42.0",
+    "webpack-cli": "3.3.11",
+    "webpack-dev-server": "3.10.3"
+  }
+}
