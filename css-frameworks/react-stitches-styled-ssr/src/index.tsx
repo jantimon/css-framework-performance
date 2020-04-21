@@ -5,4 +5,4 @@ import { App, Provider, config } from './App';
 
 const css = createCss(config)
 
-// render(<Provider css={css}><App /></Provider>, document.getElementById("root"));
+render(<Provider css={css}><App /></Provider>, document.getElementById("root"));
