@@ -1,12 +1,11 @@
 {
-  "name": "styled-components",
-  "description": "Styled-components used with react",
+  "name": "vanilla-react-concurrency-ssr",
+  "description": "Plain css classes used by react suspense and server side rendering",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "react": "16.13.0",
-    "react-dom": "16.13.0",
-    "styled-components": "5.0.1"
+    "react": "experimental",
+    "react-dom": "experimental"
   },
   "devDependencies": {
     "html-webpack-plugin": "4.0.4",

@@ -1,11 +1,11 @@
 {
   "name": "vanilla-style-loader",
+  "description": "Plain css embededed using the webpack style-loader",
   "version": "1.0.0",
   "private": true,
-  "main": "webpack.config.js",
   "dependencies": {
     "css-loader": "3.4.2",
-    "html-webpack-plugin": "4.0.0-beta.14",
+    "html-webpack-plugin": "4.0.4",
     "style-loader": "1.1.3",
     "webpack": "4.42.0"
   }

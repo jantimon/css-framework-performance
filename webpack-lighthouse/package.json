@@ -6,7 +6,7 @@
   },
   "bin": "bin/index.js",
   "dependencies": {
-    "@lhci/cli": "0.3.9",
+    "@lhci/cli": "0.3.12",
     "compression": "1.7.4",
     "execa": "4.0.0",
     "express": "4.17.1",

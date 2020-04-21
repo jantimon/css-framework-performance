@@ -1,0 +1,53 @@
+th {
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+tbody td:first-child {
+  position: sticky;
+  left: 20px;
+  background: white;
+}
+
+tbody td:first-child:before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  width: 20px;
+  top: 0;
+  bottom: 0;
+  background: white;
+}
+
+tfoot td {
+  position: sticky;
+  bottom: 0;
+  right: 5px;
+  background: white;
+  border-top: 1px solid #E1E1E1;
+  text-align: right;
+}
+
+.no-border td {
+  border-bottom-color: transparent;
+  padding-bottom: 0;
+}
+
+.sorted {
+  display: block;
+  position: relative;
+}
+.sorted::before {
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  content: "🔻"
+}
+
+.sortable {
+  cursor: pointer;
+}

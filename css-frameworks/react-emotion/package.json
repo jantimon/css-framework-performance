@@ -1,8 +1,8 @@
 {
   "name": "react-emotion",
+  "description": "Emotion with react",
   "version": "1.0.0",
   "private": true,
-  "main": "webpack.config.js",
   "dependencies": {
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
@@ -10,7 +10,7 @@
     "react-dom": "16.13.0"
   },
   "devDependencies": {
-    "html-webpack-plugin": "4.0.0-beta.14",
+    "html-webpack-plugin": "4.0.4",
     "scss-config-webpack-plugin": "2.0.0",
     "ts-config-webpack-plugin": "2.0.0",
     "typescript": "3.8.3",

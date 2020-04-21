@@ -1,8 +1,8 @@
 {
   "name": "vanilla-vue-ssr",
+  "description": "Plain css classes used with Vue and server side rendering",
   "version": "1.0.0",
   "private": true,
-  "main": "webpack.config.js",
   "dependencies": {
     "vue": "2.6.11"
   },

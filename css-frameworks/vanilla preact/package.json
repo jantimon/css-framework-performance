@@ -1,14 +1,14 @@
 {
   "name": "vanilla-preact",
+  "description": "Plain css classes used by preact",
   "version": "1.0.0",
   "private": true,
-  "main": "webpack.config.js",
   "dependencies": {
     "preact": "10.3.4",
     "preact-render-to-string": "5.1.4"
   },
   "devDependencies": {
-    "html-webpack-plugin": "4.0.0-beta.14",
+    "html-webpack-plugin": "4.0.4",
     "scss-config-webpack-plugin": "2.0.0",
     "ts-config-webpack-plugin": "2.0.0",
     "typescript": "3.8.3",

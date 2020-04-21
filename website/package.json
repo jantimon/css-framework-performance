@@ -1,14 +1,13 @@
 {
-  "name": "styled-components",
-  "description": "Styled-components used with react",
+  "name": "website",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "react": "16.13.0",
-    "react-dom": "16.13.0",
-    "styled-components": "5.0.1"
+    "preact": "10.3.4",
+    "preact-render-to-string": "5.1.4"
   },
   "devDependencies": {
+    "favicons-webpack-plugin": "3.0.1",
     "html-webpack-plugin": "4.0.4",
     "scss-config-webpack-plugin": "2.0.0",
     "ts-config-webpack-plugin": "2.0.0",

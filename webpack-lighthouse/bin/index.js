@@ -10,7 +10,7 @@ const argv = require('yargs')
 
 const webpackConfigPath = path.resolve(process.cwd(), argv.config);
 
-require("../")(argv.port, webpackConfigPath, argv.output)
+require("../")(argv.port, webpackConfigPath, argv.output, argv._)
   .then(() => {
     process.exit(0);
   },

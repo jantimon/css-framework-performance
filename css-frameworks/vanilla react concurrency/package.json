@@ -1,12 +1,13 @@
 {
-  "name": "styled-components",
-  "description": "Styled-components used with react",
+  "name": "vanilla-react-concurrency",
+  "description": "Plain css classes used by react suspense",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "react": "16.13.0",
-    "react-dom": "16.13.0",
-    "styled-components": "5.0.1"
+    "css-loader": "3.4.2",
+    "style-loader": "1.1.3",
+    "react": "experimental",
+    "react-dom": "experimental"
   },
   "devDependencies": {
     "html-webpack-plugin": "4.0.4",

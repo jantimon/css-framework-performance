@@ -1,15 +1,15 @@
 {
   "name": "styled-components-ssr",
+  "description": "Styled-components used with react and server side rendering",
   "version": "1.0.0",
   "private": true,
-  "main": "webpack.config.js",
   "dependencies": {
     "react": "16.13.0",
     "react-dom": "16.13.0",
     "styled-components": "5.0.1"
   },
   "devDependencies": {
-    "html-webpack-plugin": "4.0.0-beta.14",
+    "html-webpack-plugin": "4.0.4",
     "scss-config-webpack-plugin": "2.0.0",
     "ts-config-webpack-plugin": "2.0.0",
     "typescript": "3.8.3",

@@ -15,6 +15,7 @@ jobs:
         run: |
           npm install
           npm run reports
+          npm run website
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
