@@ -19,7 +19,12 @@ const cell = css.compose(
   css.float('left'),
   css.position('relative'),
   css.width('5.55%'),
-  css.height('100%')
+  css.height('100%'),
+  css.color('rgba(0, 0, 0, 0.1)', ':hover .element'),
+  css.transform('scale(3, 3)', ':hover .element'),
+  css.borderColor('rgba(0, 0, 0, 0.1)', ':hover .element'),
+  css.zIndex(1, ':hover .element'),
+  css.backgroundColor('rgba(0, 128, 128, 0.9)', ':hover .element')
 )
 
 const colors = {
@@ -48,7 +53,12 @@ const elementWrapper = (color: string = 'c1')  => css.compose(
   css.transitionProperty('all'),
   css.transitionDuration('200ms'),
   css.transitionTimingFunction('ease'),
-  css.backgroundColor(colors[color])
+  css.backgroundColor(colors[color]),
+  css.color('rgba(0, 0, 0, 0.1)', ':hover .element'),
+  css.transform('scale(3, 3)', ':hover .element'),
+  css.borderColor('rgba(0, 0, 0, 0.1)', ':hover .element'),
+  css.zIndex(1, ':hover .element'),
+  css.backgroundColor('rgba(0, 128, 128, 0.9)', ':hover .element')
 )
 
 
@@ -125,7 +135,7 @@ const periodicRow = css.compose(
 const Element = props => (
   <div className={cell}>
     {props.name && (
-      <div className={elementWrapper(props.color)}>
+      <div className={elementWrapper(props.color) + ' element'}>
         <div className={elementNumber}>{props.number}</div>
         <div className={elementSymbol}>{props.symbol}</div>
         <div className={elementDetails}>

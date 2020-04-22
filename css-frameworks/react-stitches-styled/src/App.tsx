@@ -25,7 +25,12 @@ const Cell = styled.div(css => css.compose(
   css.float('left'),
   css.position('relative'),
   css.width('5.55%'),
-  css.height('100%')
+  css.height('100%'),
+  css.color('rgba(0, 0, 0, 0.1)', ':hover .element'),
+  css.transform('scale(3, 3)', ':hover .element'),
+  css.borderColor('rgba(0, 0, 0, 0.1)', ':hover .element'),
+  css.zIndex(1, ':hover .element'),
+  css.backgroundColor('rgba(0, 128, 128, 0.9)', ':hover .element')
 ))
 
 const colors = {
@@ -133,7 +138,7 @@ const PeriodicRow = styled.div(css => css.compose(
 const Element = props => (
   <Cell>
     {props.name && (
-      <ElementWrapper color={props.color}>
+      <ElementWrapper color={props.color} className="element">
         <ElementNumber>{props.number}</ElementNumber>
         <ElementSymbol>{props.symbol}</ElementSymbol>
         <ElementDetails>
