@@ -4,12 +4,12 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "vue": "2.6.11"
+    "vue": "2.6.12"
   },
   "devDependencies": {
     "html-webpack-plugin": "4.3.0",
     "scss-config-webpack-plugin": "2.0.0",
-    "vue-server-renderer": "^2.6.11",
+    "vue-server-renderer": "2.6.12",
     "webpack": "4.42.1",
     "webpack-cli": "3.3.11",
     "webpack-dev-server": "3.10.3"
