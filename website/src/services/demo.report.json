@@ -10,6 +10,10 @@
   "requestedUrl": "http://127.0.0.1:3000/index.html",
   "finalUrl": "http://127.0.0.1:3000/index.html",
   "runWarnings": [],
+  "runtimeError": {
+    "code": "NO_FCP",
+    "message": "Something went wrong with recording the trace over your page load. Please run Lighthouse again. (NO_FCP)"
+  },
   "audits": {
     "is-on-https": {
       "id": "is-on-https",

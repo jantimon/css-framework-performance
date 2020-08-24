@@ -6,14 +6,14 @@ const util = __non_webpack_require__("util") as typeof import("util");
 const readFile = util.promisify(fs.readFile);
 
 export interface LighthouseSummary {
-    medianIndex: number;
-    FirstContentfulPaint: number;
-    FirstMeaningfulPaint: number;
-    FirstCPUIdle: number;
-    TimeToInteractive: number;
-    MaxPotentialFirstInputDelay: number;
-    Requests: number;
-    TransferSize: number;
+  medianIndex: number;
+  FirstContentfulPaint: number;
+  FirstMeaningfulPaint: number;
+  FirstCPUIdle: number;
+  TimeToInteractive: number;
+  MaxPotentialFirstInputDelay: number;
+  Requests: number;
+  TransferSize: number;
 }
 
 /** Calculates the median and returns the index */
@@ -52,20 +52,36 @@ export const getReportData = async (codePath: string, reportPath: string) => {
         (report) => JSON.parse(report) as typeof import("./demo.report.json")
       );
 
-      const errorReport = lightHouseReports.find((report) => report.audits.interactive.errorMessage);
+      const errorReport = lightHouseReports.find(
+        (report) =>
+          (report.runtimeError && report.runtimeError.message) ||
+          report.audits.interactive.errorMessage
+      );
       if (errorReport) {
-        throw new Error(`in report '${projectFolderName}': "${errorReport.audits.interactive.errorMessage}"`)
+        throw new Error(
+          `in report '${projectFolderName}': "${
+            (errorReport.runtimeError && errorReport.runtimeError.message) ||
+            errorReport.audits.interactive.errorMessage
+          }"`
+        );
       }
 
       const medianReportIndex = medianIndex(
         lightHouseReports.map(
-          (report) => report.audits["interactive"].numericValue + report.audits["first-contentful-paint"].numericValue
+          (report) =>
+            report.audits["interactive"].numericValue +
+            report.audits["first-contentful-paint"].numericValue
         )
       );
 
       if (medianReportIndex === -1) {
-        console.log(lightHouseReports[0].audits.interactive, lightHouseReports[0].audits["first-contentful-paint"])
-        throw new Error('no median report not found for "' + projectFolderName + '"')
+        console.log(
+          lightHouseReports[0].audits.interactive,
+          lightHouseReports[0].audits["first-contentful-paint"]
+        );
+        throw new Error(
+          'no median report not found for "' + projectFolderName + '"'
+        );
       }
 
       const medianReport = lightHouseReports[medianReportIndex];
@@ -102,32 +118,41 @@ export const getReportData = async (codePath: string, reportPath: string) => {
       ? -1
       : 0
   );
-  
+
   return {
-    reportMinValues: calculateMinValues(reportData.map((report) => report.lighthouseReportSummary)),
-    reports: reportData
+    reportMinValues: calculateMinValues(
+      reportData.map((report) => report.lighthouseReportSummary)
+    ),
+    reports: reportData,
   };
 };
 
-const calculateMinValues = (lighthouseReportSummary: Array<LighthouseSummary>) => {
+const calculateMinValues = (
+  lighthouseReportSummary: Array<LighthouseSummary>
+) => {
   const keys = [
-    'FirstContentfulPaint',
-    'FirstMeaningfulPaint',
-    'FirstCPUIdle',
-    'TimeToInteractive',
-    'MaxPotentialFirstInputDelay',
-    'Requests',
-    'TransferSize',
+    "FirstContentfulPaint",
+    "FirstMeaningfulPaint",
+    "FirstCPUIdle",
+    "TimeToInteractive",
+    "MaxPotentialFirstInputDelay",
+    "Requests",
+    "TransferSize",
   ] as const;
-  const minValues = {} as {[key in 'FirstContentfulPaint' |
-  'FirstMeaningfulPaint' |
-  'FirstCPUIdle' |
-  'TimeToInteractive' |
-  'MaxPotentialFirstInputDelay' |
-  'Requests' |
-  'TransferSize']: number};
+  const minValues = {} as {
+    [key in
+      | "FirstContentfulPaint"
+      | "FirstMeaningfulPaint"
+      | "FirstCPUIdle"
+      | "TimeToInteractive"
+      | "MaxPotentialFirstInputDelay"
+      | "Requests"
+      | "TransferSize"]: number;
+  };
   keys.forEach((key) => {
-    minValues[key] = Math.min(... lighthouseReportSummary.map((report) => report[key]))
-  })
+    minValues[key] = Math.min(
+      ...lighthouseReportSummary.map((report) => report[key])
+    );
+  });
   return minValues;
-}
+};
