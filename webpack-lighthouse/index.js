@@ -41,12 +41,7 @@ async function startLighthouse(args) {
   const childProcess = execa(lighthouseCli, args);
   childProcess.stdout.pipe(process.stdout);
   childProcess.stderr.pipe(process.stderr);
-  return await childProcess.then(
-    () => {},
-    err => {
-      console.error(err);
-    }
-  );
+  return childProcess;
 }
 
 async function staticCompile(webpackConfigPath, outputPath) {
@@ -54,10 +49,5 @@ async function staticCompile(webpackConfigPath, outputPath) {
   const childProcess = execa(require.resolve("webpack-cli"), ['--config', webpackConfigPath, '--output-path', outputPath]);
   childProcess.stdout.pipe(process.stdout);
   childProcess.stderr.pipe(process.stderr);
-  return await childProcess.then(
-    () => {},
-    err => {
-      console.error(err);
-    }
-  );
+  return childProcess
 }

@@ -10,7 +10,11 @@ const execa = require('execa');
       "--throttling-method=devtools",
       "--throttling.cpuSlowdownMultiplier=4",
       '--chrome-flags="--headless"'
-    ]);
+    ]).catch((e) => {
+      console.log(dirs[i], 'failed');
+      console.log(e);
+      process.exit(1);
+    }) ;
   }
   console.log("done.");
 })();
