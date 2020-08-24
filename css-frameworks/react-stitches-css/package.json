@@ -9,7 +9,7 @@
     "@stitches/css": "1.4.2"
   },
   "devDependencies": {
-    "html-webpack-plugin": "4.0.0-beta.14",
+    "html-webpack-plugin": "4.3.0",
     "scss-config-webpack-plugin": "2.0.0",
     "ts-config-webpack-plugin": "2.0.0",
     "typescript": "3.8.3",
