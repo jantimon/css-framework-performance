@@ -243,7 +243,8 @@
       "score": 1,
       "scoreDisplayMode": "numeric",
       "numericValue": 939.004,
-      "displayValue": "0.9 s"
+      "displayValue": "0.9 s",
+      "errorMessage": "."
     },
     "user-timings": {
       "id": "user-timings",

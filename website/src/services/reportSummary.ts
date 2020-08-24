@@ -52,13 +52,23 @@ export const getReportData = async (codePath: string, reportPath: string) => {
         (report) => JSON.parse(report) as typeof import("./demo.report.json")
       );
 
+      const errorReport = lightHouseReports.find((report) => report.audits.interactive.errorMessage);
+      if (errorReport) {
+        throw new Error(`in report '${projectFolderName}': "${errorReport.audits.interactive.errorMessage}"`)
+      }
+
       const medianReportIndex = medianIndex(
         lightHouseReports.map(
           (report) => report.audits["interactive"].numericValue + report.audits["first-contentful-paint"].numericValue
         )
       );
-      const medianReport = lightHouseReports[medianReportIndex];
 
+      if (medianReportIndex === -1) {
+        console.log(lightHouseReports[0].audits.interactive, lightHouseReports[0].audits["first-contentful-paint"])
+        throw new Error('no median report not found for "' + projectFolderName + '"')
+      }
+
+      const medianReport = lightHouseReports[medianReportIndex];
       const reportSummary: LighthouseSummary = {
         medianIndex: medianReportIndex,
         FirstContentfulPaint:
